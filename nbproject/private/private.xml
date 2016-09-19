@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <data xmlns="http://www.netbeans.org/ns/make-project-private/1">
+        <activeConfTypeElem>1</activeConfTypeElem>
+        <activeConfIndexElem>0</activeConfIndexElem>
+    </data>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/HW_Machine.h</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/HW_MMU.cpp</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/Abstr_MemoryManager.cpp</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/Abstr_MemoryChunk.h</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/OperatingSystem.h</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/HW_HardDisk.cpp</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/Mediator_HardDisk.h</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/HW_HardDisk.h</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/HW_RAM.cpp</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/HW_Machine.cpp</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/HW_RAM.h</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/Traits.h</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/Abstr_MemoryChunk.cpp</file>
+            <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/HW_MMU.h</file>
+        </group>
+        <group name="Classes">
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/Simulator.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_CPU.h</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/OperatingSystem.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_Timer.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/Abstr_Process.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/Module.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_MMU.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_Machine.h</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_CPU.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/ModuleInvoke_PulseExecution.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/main.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_RAM.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/Application.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/ModuleCreate.cpp</file>
+        </group>
+    </open-files>
+</project-private>

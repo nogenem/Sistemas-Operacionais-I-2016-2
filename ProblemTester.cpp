@@ -6,24 +6,20 @@
  */
 
 
-#include "ProblemTester.h"
 
 #include <iostream>
-#include "Simulator.h"
-#include "OperatingSystem.h"
-#include "Simul_Entity.h"
 
+#include "OperatingSystem.h"
+#include "Traits.h"
+
+#include "Simulator.h"
 #include "SourceModule.h"
+#include "Simul_Entity.h"
 #include "ModuleCreate.h"
 #include "ModuleDispose.h"
-#include "ModuleDelay.h"
-//#include "ModuleInvoke_InterruptHandler.h"
-//#include "ModuleInvoke_ProcessExec.h"
-//#include "ModuleInvoke_ThreadExec.h"
-#include "ModuleWait.h"
-#include "ModuleSignal.h"
-#include "Traits.h"
 #include "ModelBuilder.h"
+
+#include "ProblemTester.h"
 
 
 ProblemTester::ProblemTester() {

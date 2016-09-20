@@ -60,15 +60,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/Model.o \
 	${OBJECTDIR}/ModelBuilder.o \
 	${OBJECTDIR}/Module.o \
-	${OBJECTDIR}/ModuleAssign.o \
 	${OBJECTDIR}/ModuleCreate.o \
-	${OBJECTDIR}/ModuleDelay.o \
 	${OBJECTDIR}/ModuleDispose.o \
-	${OBJECTDIR}/ModuleDuplicate.o \
 	${OBJECTDIR}/ModuleInvoke_HardwareEvent.o \
 	${OBJECTDIR}/ModuleInvoke_PulseExecution.o \
-	${OBJECTDIR}/ModuleSignal.o \
-	${OBJECTDIR}/ModuleWait.o \
 	${OBJECTDIR}/OperatingSystem.o \
 	${OBJECTDIR}/ProblemSolving20162ModelBuilder.o \
 	${OBJECTDIR}/ProblemTester.o \
@@ -233,30 +228,15 @@ ${OBJECTDIR}/Module.o: Module.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Module.o Module.cpp
 
-${OBJECTDIR}/ModuleAssign.o: ModuleAssign.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleAssign.o ModuleAssign.cpp
-
 ${OBJECTDIR}/ModuleCreate.o: ModuleCreate.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleCreate.o ModuleCreate.cpp
 
-${OBJECTDIR}/ModuleDelay.o: ModuleDelay.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleDelay.o ModuleDelay.cpp
-
 ${OBJECTDIR}/ModuleDispose.o: ModuleDispose.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleDispose.o ModuleDispose.cpp
-
-${OBJECTDIR}/ModuleDuplicate.o: ModuleDuplicate.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleDuplicate.o ModuleDuplicate.cpp
 
 ${OBJECTDIR}/ModuleInvoke_HardwareEvent.o: ModuleInvoke_HardwareEvent.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -267,16 +247,6 @@ ${OBJECTDIR}/ModuleInvoke_PulseExecution.o: ModuleInvoke_PulseExecution.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleInvoke_PulseExecution.o ModuleInvoke_PulseExecution.cpp
-
-${OBJECTDIR}/ModuleSignal.o: ModuleSignal.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleSignal.o ModuleSignal.cpp
-
-${OBJECTDIR}/ModuleWait.o: ModuleWait.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleWait.o ModuleWait.cpp
 
 ${OBJECTDIR}/OperatingSystem.o: OperatingSystem.cpp 
 	${MKDIR} -p ${OBJECTDIR}

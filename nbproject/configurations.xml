@@ -29,15 +29,10 @@
       <itemPath>Model.h</itemPath>
       <itemPath>ModelBuilder.h</itemPath>
       <itemPath>Module.h</itemPath>
-      <itemPath>ModuleAssign.h</itemPath>
       <itemPath>ModuleCreate.h</itemPath>
-      <itemPath>ModuleDelay.h</itemPath>
       <itemPath>ModuleDispose.h</itemPath>
-      <itemPath>ModuleDuplicate.h</itemPath>
       <itemPath>ModuleInvoke_HardwareEvent.h</itemPath>
       <itemPath>ModuleInvoke_PulseExecution.h</itemPath>
-      <itemPath>ModuleSignal.h</itemPath>
-      <itemPath>ModuleWait.h</itemPath>
       <itemPath>OperatingSystem.h</itemPath>
       <itemPath>ProblemSolving20162ModelBuilder.h</itemPath>
       <itemPath>ProblemTester.h</itemPath>
@@ -80,15 +75,10 @@
       <itemPath>Model.cpp</itemPath>
       <itemPath>ModelBuilder.cpp</itemPath>
       <itemPath>Module.cpp</itemPath>
-      <itemPath>ModuleAssign.cpp</itemPath>
       <itemPath>ModuleCreate.cpp</itemPath>
-      <itemPath>ModuleDelay.cpp</itemPath>
       <itemPath>ModuleDispose.cpp</itemPath>
-      <itemPath>ModuleDuplicate.cpp</itemPath>
       <itemPath>ModuleInvoke_HardwareEvent.cpp</itemPath>
       <itemPath>ModuleInvoke_PulseExecution.cpp</itemPath>
-      <itemPath>ModuleSignal.cpp</itemPath>
-      <itemPath>ModuleWait.cpp</itemPath>
       <itemPath>OperatingSystem.cpp</itemPath>
       <itemPath>ProblemSolving20162ModelBuilder.cpp</itemPath>
       <itemPath>ProblemTester.cpp</itemPath>
@@ -235,25 +225,13 @@
       </item>
       <item path="Module.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ModuleAssign.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModuleAssign.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="ModuleCreate.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ModuleCreate.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ModuleDelay.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModuleDelay.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="ModuleDispose.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ModuleDispose.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModuleDuplicate.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModuleDuplicate.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ModuleInvoke_HardwareEvent.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -262,14 +240,6 @@
       <item path="ModuleInvoke_PulseExecution.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ModuleInvoke_PulseExecution.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModuleSignal.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModuleSignal.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModuleWait.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModuleWait.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="OperatingSystem.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -447,25 +417,13 @@
       </item>
       <item path="Module.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ModuleAssign.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModuleAssign.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="ModuleCreate.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ModuleCreate.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ModuleDelay.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModuleDelay.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="ModuleDispose.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ModuleDispose.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModuleDuplicate.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModuleDuplicate.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ModuleInvoke_HardwareEvent.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -474,14 +432,6 @@
       <item path="ModuleInvoke_PulseExecution.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ModuleInvoke_PulseExecution.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModuleSignal.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModuleSignal.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ModuleWait.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ModuleWait.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="OperatingSystem.cpp" ex="false" tool="1" flavor2="0">
       </item>

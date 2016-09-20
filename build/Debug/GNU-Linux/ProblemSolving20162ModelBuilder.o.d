@@ -7,8 +7,7 @@ build/Debug/GNU-Linux/ProblemSolving20162ModelBuilder.o: \
  Util_Scheduling_Queue.h Abstr_FileSystem.h Mediator_CPU.h Mediator_DMA.h \
  Mediator_HardDisk.h HW_HardDisk.h Mediator_MMU.h Traits.h Simul_Debug.h \
  HW_Timer.h ModuleInvoke_HardwareEvent.h Simulator.h Simul_Event.h \
- ModuleCreate.h ModuleDispose.h ModuleDelay.h \
- ModuleInvoke_PulseExecution.h ModuleWait.h ModuleSignal.h
+ ModuleCreate.h ModuleDispose.h ModuleInvoke_PulseExecution.h
 
 ProblemSolving20162ModelBuilder.h:
 
@@ -76,10 +75,4 @@ ModuleCreate.h:
 
 ModuleDispose.h:
 
-ModuleDelay.h:
-
 ModuleInvoke_PulseExecution.h:
-
-ModuleWait.h:
-
-ModuleSignal.h:

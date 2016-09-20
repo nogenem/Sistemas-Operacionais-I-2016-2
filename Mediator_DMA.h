@@ -19,10 +19,15 @@ public:
     friend class ModuleInvoke_HardwareEvent;
     friend class ProblemTester;
 public:
-    DMA();
+    DMA(unsigned int instance);
     DMA(const DMA& orig);
     virtual ~DMA();
-
+public:
+    // INSERT YOUR CODE HERE
+    // (methods to program the DMA to perform a block transfer)
+    // ...
+private:
+    unsigned int _instance;
 private:
     static void interrupt_handler();
 

@@ -102,7 +102,7 @@ void Simulator::_do_step() {
 }
 
 void Simulator::_do_run() {
-    std::cout << "Simulation is initing.\n";
+    std::cout << "Simulation of model\"" << this->_model->getName() << "\" is initing.\n";
     _initSimulation();
     for (unsigned int replicationNum = 1; replicationNum <= _model->getMaxReplications(); replicationNum++) {
         std::cout << "Replication " << replicationNum << " is starting.\n";

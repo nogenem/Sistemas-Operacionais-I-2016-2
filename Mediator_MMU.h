@@ -16,11 +16,15 @@
 
 class MMU {
 public:
-    MMU();
+    MMU(unsigned int instance);
     MMU(const MMU& orig);
     virtual ~MMU();
+public:
+    // INSERT YOUR CODE HERE
+    // (Methods to set MMU registers)
+    // ...
 private:
-
+    unsigned int _instance;
 };
 
 #endif /* MMU_H */

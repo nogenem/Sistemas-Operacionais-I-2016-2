@@ -54,7 +54,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/HW_Timer.o \
 	${OBJECTDIR}/Mediator_CPU.o \
 	${OBJECTDIR}/Mediator_DMA.o \
-	${OBJECTDIR}/Mediator_HD.o \
+	${OBJECTDIR}/Mediator_HardDisk.o \
 	${OBJECTDIR}/Mediator_MMU.o \
 	${OBJECTDIR}/Mediator_Timer.o \
 	${OBJECTDIR}/Model.o \
@@ -203,10 +203,10 @@ ${OBJECTDIR}/Mediator_DMA.o: Mediator_DMA.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Mediator_DMA.o Mediator_DMA.cpp
 
-${OBJECTDIR}/Mediator_HD.o: Mediator_HD.cpp 
+${OBJECTDIR}/Mediator_HardDisk.o: Mediator_HardDisk.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Mediator_HD.o Mediator_HD.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Mediator_HardDisk.o Mediator_HardDisk.cpp
 
 ${OBJECTDIR}/Mediator_MMU.o: Mediator_MMU.cpp 
 	${MKDIR} -p ${OBJECTDIR}

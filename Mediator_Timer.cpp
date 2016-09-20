@@ -12,6 +12,16 @@
 #include "Traits.h"
 #include "Abstr_Thread.h"
 
+Timer::Timer(unsigned int instance) {
+    _instance = instance;
+}
+
+Timer::Timer(const Timer& orig) {
+}
+
+Timer::~Timer() {
+}
+
 /**
  * O sistema simulado possui um timer que gera interrupções periodicamente. O timer foi inicialmente configurado
  * para gerar interrupções a cada Traits<Timer>::timer_interrupt_period unidades de tempo. 

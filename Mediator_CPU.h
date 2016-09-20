@@ -11,7 +11,10 @@
 #include "Abstr_Thread.h"
 
 class CPU {
-private:
+public:
+    friend class ModuleInvoke_HardwareEvent;
+    friend class ProblemTester;
+public:
     CPU(unsigned int instance);
     CPU(const CPU& orig);
     virtual ~CPU();
@@ -24,7 +27,8 @@ public:
     static void setInstance(unsigned int _instance);
     
 private:
-    static unsigned int _instance;
+    static unsigned int _staticActualInstance;  // for SMP schedulers
+    unsigned int _instance;
 };
 
 #endif	/* CPU_H */

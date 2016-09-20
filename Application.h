@@ -14,6 +14,8 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
+#include <list>
+
 #include "HW_MMU.h"
 #include "HW_CPU.h"
 
@@ -38,6 +40,8 @@ public:
     static Application DefaultBootApplication() {
         Application app;
         HW_MMU::Information instruction;
+        // this dummy boot application just keeps invoking system calls over and over again (always incrementing the system call number: it cant'end well..).
+   
         // 0: addi a0, zero, 0
         instruction = (HW_CPU::addi << HW_CPU::off_opcode) + (HW_CPU::a0 << HW_CPU::off_rd) + (HW_CPU::zero << HW_CPU::off_rs) + (0 << HW_CPU::off_const);
         app.addCode(instruction);

@@ -40,9 +40,8 @@ void ModuleInvoke_HardwareEvent::do_run(Entity* entity) {
         Timer::interrupt_handler();
         // schedule next timer interruption
         double interruptPeriod = Traits<HW_Timer>::timer_interrupt_period;
-        // @TODO: Duplicate entity?
         entity->getAttribute("MethodName")->setValue("Timer::interrupt_handler()");
-        simulator->insertEvent(simulator->getTnow() + interruptPeriod, this, entity);
+        simulator->insertEvent(simulator->getTnow() + interruptPeriod, this, entity); // this entity never leaves the model
     } else if (method == "HardDisk::interrupt_handler()") {
         HardDisk::interrupt_handler();
         simulator->removeEntity(entity);

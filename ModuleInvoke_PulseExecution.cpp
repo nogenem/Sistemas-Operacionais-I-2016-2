@@ -35,10 +35,11 @@ void ModuleInvoke_PulseExecution::do_run(Entity* entity) { // virtual
 
     if (IsFirstPulse()) { // hate this here, but it's simpler...  (can't do it inside Timer constructor since simulation has not began and therefore there is no actualEntity)
         Entity* interruptEntity = simulator->createEntity();
+        interruptEntity->getAttribute("EntityType")->setValue("TimerInterruption");
         interruptEntity->getAttribute("MethodName")->setValue("Timer::interrupt_handler()");
-        simulator->insertEvent(simulator->getTnow(), HW_Machine::Module_HardwareEvent(), interruptEntity);
+        simulator->insertEvent(Traits<HW_Timer>::timer_interrupt_period, HW_Machine::Module_HardwareEvent(), interruptEntity);
     }
     HW_Machine::CPU()->pulse();
-    Module* nextModule = *(this->_nextModules->begin());
-    simulator->insertEvent(simulator->getTnow(), nextModule, entity);
+    //Module* nextModule = *(this->_nextModules->begin());
+    simulator->insertEvent(simulator->getTnow()+1.0, this, entity);
 }

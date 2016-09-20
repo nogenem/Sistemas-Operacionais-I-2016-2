@@ -54,6 +54,9 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
         case GET_HEADTRACKPOSITION:
             _dataRegister = _headTrackPosition;
             break;
+        case GET_SECTORSIZE:
+            _dataRegister = DISK_SECTOR_SIZE;
+            break;
         case READ_LOGICALSECTOR:
             for (std::list<DiskSector*>::iterator it = _hardDisk->begin(); it != _hardDisk->end(); it++) {
                 found = (*it)->surface == surface && (*it)->track == track && (*it)->sector == sector;

@@ -38,38 +38,32 @@ ProblemSolving20162ModelBuilder::~ProblemSolving20162ModelBuilder() {
 Model * ProblemSolving20162ModelBuilder::buildModel() {
     Model* model = new Model("Operating Systems Simulation 2016: Computational System Theme 1");
 
-    Traits<Model>::ProblemType problemType = Traits<Model>::problemType;
-    Traits<Model>::ProblemSolving problem = Traits<Model>::problemChoosen;
+    //Traits<Model>::ProblemType problemType = Traits<Model>::problemType;
+    //Traits<Model>::ProblemSolving problem = Traits<Model>::problemChoosen;
 
-    ModuleCreate* createPulse = new ModuleCreate("Create pulse", 0.0, 1, "1.0", "pulse", true, 1);
+    ModuleCreate* createPulse = new ModuleCreate("Create pulse", 0.0, 1, "1.0", "pulse", true, 1); // one single entity is created
     model->addSourceModule((SourceModule*) createPulse);
     
-    //ModuleCreate* createTimerInterrupt = new ModuleCreate("Create timer interrupt", 100.0, 0, "100.0", "interruption", true, 1);
-    //model->addSourceModule((SourceModule*) createTimerInterrupt);
-
     ModuleInvoke_PulseExecution* pulseExecution = new ModuleInvoke_PulseExecution("Execute pulse");
     model->addModule(pulseExecution);
     
-    ModuleDelay* delayPulse = new ModuleDelay("Delay pulse", "1");
-    model->addModule(delayPulse);
+    //ModuleDelay* delayPulse = new ModuleDelay("Delay pulse", "1");
+    //model->addModule(delayPulse);
 
     ModuleDispose* disposePulse = new ModuleDispose("Terminate pulse", false);
     model->addModule(disposePulse);
     
-    //ModuleDispose* disposeTimerInterrupt = new ModuleDispose("Terminate timer interruption", false);
-    //model->addModule(disposeTimerInterrupt);
-
     // connect the model
     createPulse->addNextModule(pulseExecution);
-    pulseExecution->addNextModule(delayPulse);
+    //pulseExecution->addNextModule(delayPulse);
     pulseExecution->addNextModule(disposePulse);
-    delayPulse->addNextModule(pulseExecution);
+    //delayPulse->addNextModule(pulseExecution);
     //
     //createTimerInterrupt->addNextModule(disposeTimerInterrupt);
     
 
     // entity attributes
-    model->addEntityAttribute(new Attribute("MethodName", "0"));
+    model->addEntityAttribute(new Attribute("MethodName", ""));
     //model->addEntityAttribute(new Attribute("Attribute2", "0"));    
 
     // time infos

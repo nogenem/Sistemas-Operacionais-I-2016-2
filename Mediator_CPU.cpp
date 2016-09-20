@@ -14,9 +14,10 @@
 #include "Simul_Entity.h"
 #include "Traits.h"
 
-unsigned int CPU::_instance = 0;
+unsigned int CPU::_staticActualInstance = 0; 
 
 CPU::CPU(unsigned int instance) {
+    _staticActualInstance = instance;
     _instance = instance;
 }
 
@@ -27,7 +28,7 @@ CPU::~CPU() {
 }
 
 void CPU::switch_context(Thread* previous, Thread* next) {
-    Debug::cout(Debug::Level::trace, "CPU[" + std::to_string(_instance) + "]::swith_context(" + std::to_string(reinterpret_cast<unsigned long> (previous)) + "," + std::to_string(reinterpret_cast<unsigned long> (next)) + ") "); //will happen at time [" + std::to_string(time) + "]");
+    Debug::cout(Debug::Level::trace, "CPU[" + std::to_string(_staticActualInstance) + "]::swith_context(" + std::to_string(reinterpret_cast<unsigned long> (previous)) + "," + std::to_string(reinterpret_cast<unsigned long> (next)) + ") "); //will happen at time [" + std::to_string(time) + "]");
 
     Simulator* simulator = Simulator::getInstance();
     double time = simulator->getTnow();
@@ -53,7 +54,7 @@ void CPU::restore_context(Thread* next) {
     Simulator* simulator = Simulator::getInstance();
     double time = simulator->getTnow();
     time += Traits<CPU>::context_switch_overhead;
-    Debug::cout(Debug::Level::trace, "CPU[" + std::to_string(_instance) + "]::restore_context(" + std::to_string(reinterpret_cast<unsigned long> (next)) + ")"); // will happen at time [" + std::to_string(time) + "]");
+    Debug::cout(Debug::Level::trace, "CPU[" + std::to_string(_staticActualInstance) + "]::restore_context(" + std::to_string(reinterpret_cast<unsigned long> (next)) + ")"); // will happen at time [" + std::to_string(time) + "]");
 
     Module* module = simulator->getModel()->getModule("InvokeThreadExec"); // must match name given on main())
     std::string strNext = std::to_string(reinterpret_cast<unsigned long> (next));
@@ -74,9 +75,9 @@ void CPU::restore_context(Thread* next) {
 
 unsigned int CPU::getInstance() {
 
-    return _instance;
+    return _staticActualInstance;
 }
 
 void CPU::setInstance(unsigned int _instance) {
-    CPU::_instance = _instance;
+    CPU::_staticActualInstance = _instance;
 }

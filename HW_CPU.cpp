@@ -69,7 +69,7 @@ void HW_CPU::pulse() {
     funct = Funct::syscall;
     */
     
-    Debug::cout(Debug::Level::fine, "Executing instruction " + std::to_string(instruction));
+     Debug::cout(Debug::Level::fine, "Executing instruction " + std::to_string(instruction));
             
     // execute instruction
     switch (opcode) {

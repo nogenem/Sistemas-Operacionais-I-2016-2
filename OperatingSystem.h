@@ -8,14 +8,21 @@
 #ifndef SYSTEM_H
 #define	SYSTEM_H
 
+#include "Application.h"
+
 #include "Abstr_Scheduler.h"
 #include "Abstr_MemoryManager.h"
 #include "Abstr_FileSystem.h"
+
+#include "Mediator_CPU.h"
+#include "Mediator_DMA.h"
+#include "Mediator_HardDisk.h"
+#include "Mediator_MMU.h"
+#include "Mediator_Timer.h"
+
 #include "Traits.h"
 
 #include "ModuleInvoke_HardwareEvent.h"
-
-#include "Application.h"
 
 class OperatingSystem {
 private:
@@ -64,8 +71,47 @@ public:
         }
         return _memoryManager;
     }
+
+    static Timer* Timer_Mediator() {
+        static Timer* _timer;
+        if (_timer == nullptr) {
+            _timer = new Timer(0);
+        }
+        return _timer;
+    }
+
+    static DMA* DMA_Mediator() {
+        static DMA* _dma;
+        if (_dma == nullptr) {
+            _dma = new DMA(0);
+        }
+        return _dma;
+    }
+
+    static CPU* CPU_Mediator() {
+        static CPU* _cpu;
+        if (_cpu == nullptr) {
+            _cpu = new CPU(0);
+        }
+        return _cpu;
+    }
+
+    static MMU* MMU_Mediator() {
+        static MMU* _mmu;
+        if (_mmu == nullptr) {
+            _mmu = new MMU(0);
+        }
+        return _mmu;
+    }
+
+    static HardDisk* HardDisk_Mediator() {
+        static HardDisk* _harddisk;
+        if (_harddisk == nullptr) {
+            _harddisk = new HardDisk(0);
+        }
+        return _harddisk;
+    }
     
-    static Application CreateDefaultApplication();
     static void SetBootApplication(Application app);
     static void Init();
     

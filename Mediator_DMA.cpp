@@ -13,7 +13,8 @@
 
 #include "Mediator_DMA.h"
 
-DMA::DMA() {
+DMA::DMA(unsigned int instance) {
+    _instance = instance;
 }
 
 DMA::DMA(const DMA& orig) {

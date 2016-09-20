@@ -13,7 +13,8 @@
 
 #include "Mediator_MMU.h"
 
-MMU::MMU() {
+MMU::MMU(unsigned int instance) {
+    _instance = instance;
 }
 
 MMU::MMU(const MMU& orig) {

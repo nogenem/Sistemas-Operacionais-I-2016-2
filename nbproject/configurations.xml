@@ -74,7 +74,7 @@
       <itemPath>HW_Timer.cpp</itemPath>
       <itemPath>Mediator_CPU.cpp</itemPath>
       <itemPath>Mediator_DMA.cpp</itemPath>
-      <itemPath>Mediator_HD.cpp</itemPath>
+      <itemPath>Mediator_HardDisk.cpp</itemPath>
       <itemPath>Mediator_MMU.cpp</itemPath>
       <itemPath>Mediator_Timer.cpp</itemPath>
       <itemPath>Model.cpp</itemPath>
@@ -211,7 +211,7 @@
       </item>
       <item path="Mediator_DMA.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Mediator_HD.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Mediator_HardDisk.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Mediator_HardDisk.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -423,7 +423,7 @@
       </item>
       <item path="Mediator_DMA.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Mediator_HD.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Mediator_HardDisk.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Mediator_HardDisk.h" ex="false" tool="3" flavor2="0">
       </item>

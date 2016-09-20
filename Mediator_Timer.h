@@ -13,16 +13,18 @@
 class Timer {
     friend class ModuleInvoke_HardwareEvent;
     friend class ProblemTester;
+public:
+    Timer(unsigned int instance);
+
+    Timer(const Timer& orig);
+
+    virtual ~Timer();
+
+public:
+    
 private:
-
-    Timer() {
-    }
-
-    Timer(const Timer& orig) {
-    }
-
-    virtual ~Timer() {
-    }
+    unsigned int _instance;
+    
 private:
     static void interrupt_handler();
 };

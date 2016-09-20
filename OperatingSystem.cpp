@@ -10,8 +10,6 @@
 #include "HW_CPU.h"
 #include "HW_Machine.h"
 
-
-
 void OperatingSystem::SetBootApplication(Application app) {
     std::list<Application::Information> code = app.getCode();
     HW_CPU::Register address = HW_Machine::CPU()->readRegister(HW_CPU::pc);
@@ -26,6 +24,13 @@ void OperatingSystem::SetBootApplication(Application app) {
 
 void OperatingSystem::Init() {
     HW_Machine::Init();
+    
+    OperatingSystem::CPU_Mediator();
+    OperatingSystem::DMA_Mediator();
+    OperatingSystem::HardDisk_Mediator();
+    OperatingSystem::MMU_Mediator();
+    OperatingSystem::Timer_Mediator();
+    
     SetBootApplication(Application::DefaultBootApplication());
 }
 

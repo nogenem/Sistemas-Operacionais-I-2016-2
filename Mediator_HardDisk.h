@@ -20,7 +20,7 @@ class HardDisk {
     friend class ModuleInvoke_HardwareEvent;
     friend class ProblemTester;
 public:
-    HardDisk();
+    HardDisk(unsigned int instance);
     HardDisk(const HardDisk& orig);
     virtual ~HardDisk();
 public:
@@ -68,8 +68,9 @@ public:
 
 
 private:
-    unsigned int blocksize;
-    HW_HardDisk::blockNumber maxBlocks;
+    unsigned int _instance;
+    unsigned int _blocksize;  // should be equal to the HD sector size for simplicity
+    HW_HardDisk::blockNumber _maxBlocks;
 private:
     static void interrupt_handler();
 };

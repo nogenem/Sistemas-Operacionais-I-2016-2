@@ -31,7 +31,7 @@ ModuleInvoke_PulseExecution::~ModuleInvoke_PulseExecution() {
 
 void ModuleInvoke_PulseExecution::do_run(Entity* entity) { // virtual
     Simulator* simulator = Simulator::getInstance();
-    Debug::cout(Debug::Level::info, this, entity, "Pulsing execution");
+    Debug::cout(Debug::Level::fine, this, entity, "Pulsing execution");
 
     if (IsFirstPulse()) { // hate this here, but it's simpler...  (can't do it inside Timer constructor since simulation has not began and therefore there is no actualEntity)
         Entity* interruptEntity = simulator->createEntity();

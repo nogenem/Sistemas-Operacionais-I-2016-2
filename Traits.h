@@ -73,7 +73,7 @@ template<> struct Traits<Debug> { // CHANGE THE DEBUG LEVEL HERE SETTING THE LEV
     static const bool warning = true;        // warning shows execution major warnings
     static const bool trace = true; //false; // trace shows methods invoked (in terms of operating systems, not simulation)
     static const bool info = true; //true;   // info shows major information produced inside methods (in terms of operating systems, not simulation)
-    static const bool fine = true; //true;   // fine shows minor information produced inside methods (in terms of simulation, just like entity has arrive to or is leaving a module)
+    static const bool fine = false; //true;   // fine shows minor information produced inside methods (in terms of simulation, just like entity has arrive to or is leaving a module)
     //
     static const bool showEntityAttributes = true;
     static const bool showListOfEvents = true;

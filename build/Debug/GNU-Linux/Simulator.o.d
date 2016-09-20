@@ -4,7 +4,7 @@ build/Debug/GNU-Linux/Simulator.o: Simulator.cpp Simulator.h Model.h \
  OperatingSystem.h Abstr_Scheduler.h Abstr_Thread.h Util_Queue.h \
  Mediator_Timer.h Util_Scheduling_Queue.h Abstr_FileSystem.h Traits.h \
  Simul_Debug.h Mediator_CPU.h HW_HardDisk.h HW_Timer.h \
- ModuleInvoke_SystemEvent.h Application.h
+ ModuleInvoke_HardwareEvent.h Application.h HW_CPU.h
 
 Simulator.h:
 
@@ -52,6 +52,8 @@ HW_HardDisk.h:
 
 HW_Timer.h:
 
-ModuleInvoke_SystemEvent.h:
+ModuleInvoke_HardwareEvent.h:
 
 Application.h:
+
+HW_CPU.h:

@@ -4,7 +4,8 @@ build/Debug/GNU-Linux/Abstr_Process.o: Abstr_Process.cpp Simul_Debug.h \
  Mediator_Timer.h OperatingSystem.h Abstr_Scheduler.h \
  Util_Scheduling_Queue.h Abstr_FileSystem.h Traits.h Model.h \
  SourceModule.h Simul_Util.h Mediator_CPU.h HW_HardDisk.h HW_Timer.h \
- ModuleInvoke_SystemEvent.h Application.h Simulator.h Simul_Event.h
+ ModuleInvoke_HardwareEvent.h Application.h HW_CPU.h Simulator.h \
+ Simul_Event.h
 
 Simul_Debug.h:
 
@@ -48,9 +49,11 @@ HW_HardDisk.h:
 
 HW_Timer.h:
 
-ModuleInvoke_SystemEvent.h:
+ModuleInvoke_HardwareEvent.h:
 
 Application.h:
+
+HW_CPU.h:
 
 Simulator.h:
 

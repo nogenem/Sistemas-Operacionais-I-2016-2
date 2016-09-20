@@ -4,7 +4,8 @@ build/Debug/GNU-Linux/Mediator_Timer.o: Mediator_Timer.cpp \
  OperatingSystem.h Abstr_Scheduler.h Abstr_Thread.h Util_Queue.h \
  Abstr_Process.h Abstr_MemoryManager.h Abstr_MemoryChunk.h HW_MMU.h \
  Util_Scheduling_Queue.h Abstr_FileSystem.h Traits.h Mediator_CPU.h \
- HW_HardDisk.h HW_Timer.h ModuleInvoke_SystemEvent.h Application.h
+ HW_HardDisk.h HW_Timer.h ModuleInvoke_HardwareEvent.h Application.h \
+ HW_CPU.h
 
 Mediator_Timer.h:
 
@@ -52,6 +53,8 @@ HW_HardDisk.h:
 
 HW_Timer.h:
 
-ModuleInvoke_SystemEvent.h:
+ModuleInvoke_HardwareEvent.h:
 
 Application.h:
+
+HW_CPU.h:

@@ -13,6 +13,9 @@
 
 #include "HW_HardDisk.h"
 #include "Traits.h"
+#include "Simulator.h"
+#include "OperatingSystem.h"
+#include "HW_Machine.h"
 
 #include <list>
 #include <stdlib.h>
@@ -31,6 +34,9 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
     unsigned int track = _dataRegister % Traits<HW_HardDisk>::numTracksPerSurface;
     unsigned int sector = _dataRegister % Traits<HW_HardDisk>::numSectorsPerTrack;
     unsigned int headMovement = abs(_headTrackPosition - track);
+    double instantMovementFinished;
+    Simulator* simulator;
+    Entity* entity;
     bool found = false;
     switch (_commandRegister) {
         case GET_TOTALSECTORS:
@@ -66,7 +72,11 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
             }
             _headTrackPosition = track;
             // schedule an event to notify it's ready
-            // ...
+            simulator = Simulator::getInstance();
+            entity = simulator->getEntity();
+            entity->getAttribute("MethodName")->setValue("HardDisk::interruptHandler()");
+            instantMovementFinished = simulator->getTnow() + headMovement * Traits<HW_HardDisk>::sectorMovementTime;
+            simulator->insertEvent(instantMovementFinished, HW_Machine::Module_HardwareEvent(), entity);
             break;
         case WRITE_LOGICALSECTOR:
             for (std::list<DiskSector*>::iterator it = _hardDisk->begin(); it != _hardDisk->end(); it++) {
@@ -90,6 +100,12 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
                 _hardDisk->insert(_hardDisk->begin(), newSector);
             }
             _headTrackPosition = track;
+            // schedule an event to notify it's ready
+            simulator = Simulator::getInstance();
+            entity = simulator->getEntity();
+            entity->getAttribute("MethodName")->setValue("HardDisk::interruptHandler()");
+            instantMovementFinished = simulator->getTnow() + headMovement * Traits<HW_HardDisk>::sectorMovementTime;
+            simulator->insertEvent(instantMovementFinished, HW_Machine::Module_HardwareEvent(), entity);
             break;
         default:
             // never should happen

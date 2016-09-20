@@ -15,7 +15,9 @@
 
 #include "Simulator.h"
 #include "Simul_Debug.h"
+
 #include "OperatingSystem.h"
+#include "Mediator_Timer.h"
 #include "HW_Machine.h"
 
 ModuleInvoke_PulseExecution::ModuleInvoke_PulseExecution(std::string name) : Module(name) {
@@ -31,10 +33,12 @@ void ModuleInvoke_PulseExecution::do_run(Entity* entity) { // virtual
     Simulator* simulator = Simulator::getInstance();
     Debug::cout(Debug::Level::info, this, entity, "Pulsing execution");
 
-    //OperatingSystem::
+    if (IsFirstPulse()) { // hate this here, but it's simpler...  (can't do it inside Timer constructor since simulation has not began and therefore there is no actualEntity)
+        Entity* interruptEntity = simulator->createEntity();
+        interruptEntity->getAttribute("MethodName")->setValue("Timer::interrupt_handler()");
+        simulator->insertEvent(simulator->getTnow(), HW_Machine::Module_HardwareEvent(), interruptEntity);
+    }
     HW_Machine::CPU()->pulse();
-    //Debug::cout(Debug::Level::fine, this, entity, "Entity will wait for " + std::to_string(delay) + " time units");
-
     Module* nextModule = *(this->_nextModules->begin());
     simulator->insertEvent(simulator->getTnow(), nextModule, entity);
 }

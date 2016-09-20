@@ -16,11 +16,11 @@
 
 #include "Module.h"
 
-class ModuleInvoke_SystemEvent: public Module {
+class ModuleInvoke_HardwareEvent: public Module {
 public:
-    ModuleInvoke_SystemEvent(std::string name);
-    ModuleInvoke_SystemEvent(const ModuleInvoke_SystemEvent& orig);
-    virtual ~ModuleInvoke_SystemEvent();
+    ModuleInvoke_HardwareEvent(std::string name);
+    ModuleInvoke_HardwareEvent(const ModuleInvoke_HardwareEvent& orig);
+    virtual ~ModuleInvoke_HardwareEvent();
 private:
 
 protected:

@@ -19,12 +19,6 @@
 
 HW_Timer::HW_Timer() {
     _interruptPeriod = Traits<HW_Timer>::timer_interrupt_period;
-    Simulator* simulator = Simulator::getInstance();
-    Entity* entity = simulator->getEntity();
-    if (entity != nullptr) {
-        entity->getAttribute("MethodName")->setValue("Timer::interrupt_handler()");
-        simulator->insertEvent(simulator->getTnow() + _interruptPeriod, OperatingSystem::Module_SystemEvent(), entity);
-    }
 }
 
 HW_Timer::HW_Timer(const HW_Timer& orig) {

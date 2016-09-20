@@ -4,9 +4,9 @@ build/Debug/GNU-Linux/ProblemTester.o: ProblemTester.cpp ProblemTester.h \
  ModelBuilder.h Model.h Module.h SourceModule.h Simul_Util.h Simulator.h \
  Simul_Event.h OperatingSystem.h Abstr_Scheduler.h \
  Util_Scheduling_Queue.h Abstr_FileSystem.h Traits.h Simul_Debug.h \
- Mediator_CPU.h HW_HardDisk.h HW_Timer.h ModuleInvoke_SystemEvent.h \
- Application.h ModuleCreate.h ModuleDispose.h ModuleDelay.h ModuleWait.h \
- ModuleSignal.h
+ Mediator_CPU.h HW_HardDisk.h HW_Timer.h ModuleInvoke_HardwareEvent.h \
+ Application.h HW_CPU.h ModuleCreate.h ModuleDispose.h ModuleDelay.h \
+ ModuleWait.h ModuleSignal.h
 
 ProblemTester.h:
 
@@ -58,9 +58,11 @@ HW_HardDisk.h:
 
 HW_Timer.h:
 
-ModuleInvoke_SystemEvent.h:
+ModuleInvoke_HardwareEvent.h:
 
 Application.h:
+
+HW_CPU.h:
 
 ModuleCreate.h:
 

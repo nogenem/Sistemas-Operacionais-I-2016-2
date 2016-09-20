@@ -21,6 +21,8 @@
 #include "HW_RAM.h"
 #include "HW_Timer.h"
 
+#include "ModuleInvoke_HardwareEvent.h"
+
 #include "Application.h"
 
 class HW_Machine {
@@ -76,6 +78,14 @@ public:
             _mmu = new HW_MMU();
         }
         return _mmu;
+    }
+      
+    static ModuleInvoke_HardwareEvent* Module_HardwareEvent() { // for simulation purposes. Allow simulation to invoke a class method associated to hardware events, mainly interrupts
+        static ModuleInvoke_HardwareEvent* _moduleHardwareEvent;
+        if (_moduleHardwareEvent == nullptr) {
+            _moduleHardwareEvent = new ModuleInvoke_HardwareEvent("HardwareEvent");
+        }
+        return _moduleHardwareEvent;
     }
     
         

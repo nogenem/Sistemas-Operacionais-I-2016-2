@@ -143,8 +143,10 @@ void HW_CPU::pulse() {
                         case 1:
                             Process::exit(0);
                             break;
-                        case 2:
+                        case 2: //...
                             break;
+                        // INSERT OTHERS SYSTEM CALLS
+                        // ...
                         default:
                             // invalid system call
                             Debug::cout(Debug::Level::error, "Invalid system call: " + std::to_string(_registers[a0]));

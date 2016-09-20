@@ -4,7 +4,7 @@ build/Debug/GNU-Linux/HW_Timer.o: HW_Timer.cpp HW_Timer.h Simulator.h \
  Abstr_Process.h Abstr_MemoryManager.h Abstr_MemoryChunk.h HW_MMU.h \
  Mediator_Timer.h Abstr_Scheduler.h Util_Scheduling_Queue.h \
  Mediator_CPU.h HW_HardDisk.h OperatingSystem.h Abstr_FileSystem.h \
- ModuleInvoke_SystemEvent.h Application.h
+ ModuleInvoke_HardwareEvent.h Application.h HW_CPU.h
 
 HW_Timer.h:
 
@@ -52,6 +52,8 @@ OperatingSystem.h:
 
 Abstr_FileSystem.h:
 
-ModuleInvoke_SystemEvent.h:
+ModuleInvoke_HardwareEvent.h:
 
 Application.h:
+
+HW_CPU.h:

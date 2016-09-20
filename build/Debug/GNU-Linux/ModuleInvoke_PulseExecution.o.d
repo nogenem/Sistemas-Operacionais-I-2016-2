@@ -5,8 +5,8 @@ build/Debug/GNU-Linux/ModuleInvoke_PulseExecution.o: \
  Abstr_Thread.h Util_Queue.h Abstr_Process.h Abstr_MemoryManager.h \
  Abstr_MemoryChunk.h HW_MMU.h Mediator_Timer.h Util_Scheduling_Queue.h \
  Abstr_FileSystem.h Traits.h Mediator_CPU.h HW_HardDisk.h HW_Timer.h \
- ModuleInvoke_SystemEvent.h Application.h HW_Machine.h HW_CPU.h HW_DMA.h \
- HW_RAM.h
+ ModuleInvoke_HardwareEvent.h Application.h HW_CPU.h HW_Machine.h \
+ HW_DMA.h HW_RAM.h
 
 ModuleInvoke_PulseExecution.h:
 
@@ -56,13 +56,13 @@ HW_HardDisk.h:
 
 HW_Timer.h:
 
-ModuleInvoke_SystemEvent.h:
+ModuleInvoke_HardwareEvent.h:
 
 Application.h:
 
-HW_Machine.h:
-
 HW_CPU.h:
+
+HW_Machine.h:
 
 HW_DMA.h:
 

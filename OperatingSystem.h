@@ -13,7 +13,7 @@
 #include "Abstr_FileSystem.h"
 #include "Traits.h"
 
-#include "ModuleInvoke_SystemEvent.h"
+#include "ModuleInvoke_HardwareEvent.h"
 
 #include "Application.h"
 
@@ -63,14 +63,6 @@ public:
             _memoryManager = new MemoryManager();
         }
         return _memoryManager;
-    }
-  
-    static ModuleInvoke_SystemEvent* Module_SystemEvent() {
-        static ModuleInvoke_SystemEvent* _moduleSystemEvent;
-        if (_moduleSystemEvent == nullptr) {
-            _moduleSystemEvent = new ModuleInvoke_SystemEvent("SystemEvent");
-        }
-        return _moduleSystemEvent;
     }
     
     static Application CreateDefaultApplication();

@@ -11,7 +11,7 @@
 //#include "ModuleInvoke_InterruptHandler.h"
 
 class Timer {
-    friend class ModuleInvoke_InterruptHandler;
+    friend class ModuleInvoke_HardwareEvent;
     friend class ProblemTester;
 private:
 

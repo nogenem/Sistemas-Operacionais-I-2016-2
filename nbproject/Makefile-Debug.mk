@@ -53,6 +53,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/HW_RAM.o \
 	${OBJECTDIR}/HW_Timer.o \
 	${OBJECTDIR}/Mediator_CPU.o \
+	${OBJECTDIR}/Mediator_DMA.o \
 	${OBJECTDIR}/Mediator_HD.o \
 	${OBJECTDIR}/Mediator_MMU.o \
 	${OBJECTDIR}/Mediator_Timer.o \
@@ -64,8 +65,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/ModuleDelay.o \
 	${OBJECTDIR}/ModuleDispose.o \
 	${OBJECTDIR}/ModuleDuplicate.o \
+	${OBJECTDIR}/ModuleInvoke_HardwareEvent.o \
 	${OBJECTDIR}/ModuleInvoke_PulseExecution.o \
-	${OBJECTDIR}/ModuleInvoke_SystemEvent.o \
 	${OBJECTDIR}/ModuleSignal.o \
 	${OBJECTDIR}/ModuleWait.o \
 	${OBJECTDIR}/OperatingSystem.o \
@@ -101,11 +102,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/removed
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20162-ine5412-sc-theme1-startpoint
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/removed: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20162-ine5412-sc-theme1-startpoint: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/removed ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20162-ine5412-sc-theme1-startpoint ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Abstr_Alarm.o: Abstr_Alarm.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -197,6 +198,11 @@ ${OBJECTDIR}/Mediator_CPU.o: Mediator_CPU.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Mediator_CPU.o Mediator_CPU.cpp
 
+${OBJECTDIR}/Mediator_DMA.o: Mediator_DMA.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Mediator_DMA.o Mediator_DMA.cpp
+
 ${OBJECTDIR}/Mediator_HD.o: Mediator_HD.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -252,15 +258,15 @@ ${OBJECTDIR}/ModuleDuplicate.o: ModuleDuplicate.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleDuplicate.o ModuleDuplicate.cpp
 
+${OBJECTDIR}/ModuleInvoke_HardwareEvent.o: ModuleInvoke_HardwareEvent.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleInvoke_HardwareEvent.o ModuleInvoke_HardwareEvent.cpp
+
 ${OBJECTDIR}/ModuleInvoke_PulseExecution.o: ModuleInvoke_PulseExecution.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleInvoke_PulseExecution.o ModuleInvoke_PulseExecution.cpp
-
-${OBJECTDIR}/ModuleInvoke_SystemEvent.o: ModuleInvoke_SystemEvent.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ModuleInvoke_SystemEvent.o ModuleInvoke_SystemEvent.cpp
 
 ${OBJECTDIR}/ModuleSignal.o: ModuleSignal.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -343,7 +349,7 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/removed
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20162-ine5412-sc-theme1-startpoint
 
 # Subprojects
 .clean-subprojects:

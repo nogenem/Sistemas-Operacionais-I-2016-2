@@ -4,8 +4,8 @@ build/Debug/GNU-Linux/main.o: main.cpp Simulator.h Model.h Module.h \
  Abstr_Process.h Abstr_MemoryManager.h Abstr_MemoryChunk.h HW_MMU.h \
  Mediator_Timer.h Util_Scheduling_Queue.h Abstr_FileSystem.h Traits.h \
  Simul_Debug.h Mediator_CPU.h HW_HardDisk.h HW_Timer.h \
- ModuleInvoke_SystemEvent.h Application.h ProblemTester.h ModelBuilder.h \
- ProblemSolving20162ModelBuilder.h
+ ModuleInvoke_HardwareEvent.h Application.h HW_CPU.h ProblemTester.h \
+ ModelBuilder.h ProblemSolving20162ModelBuilder.h
 
 Simulator.h:
 
@@ -53,9 +53,11 @@ HW_HardDisk.h:
 
 HW_Timer.h:
 
-ModuleInvoke_SystemEvent.h:
+ModuleInvoke_HardwareEvent.h:
 
 Application.h:
+
+HW_CPU.h:
 
 ProblemTester.h:
 

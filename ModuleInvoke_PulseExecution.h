@@ -22,6 +22,14 @@ public:
     ModuleInvoke_PulseExecution(const ModuleInvoke_PulseExecution& orig);
     virtual ~ModuleInvoke_PulseExecution();
 private:
+    static bool IsFirstPulse() {
+        static bool _isFirstPulse = true;
+        if (_isFirstPulse) {
+            _isFirstPulse = false;
+            return true;
+        }
+        return _isFirstPulse;
+    }
 protected:
     virtual void do_run(Entity* entity);
 };

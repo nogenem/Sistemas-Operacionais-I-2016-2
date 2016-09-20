@@ -17,7 +17,7 @@
 #include "HW_HardDisk.h"
 
 class HardDisk {
-    //friend class ModuleInvoke_InterruptHandler;
+    friend class ModuleInvoke_HardwareEvent;
     friend class ProblemTester;
 public:
     HardDisk();

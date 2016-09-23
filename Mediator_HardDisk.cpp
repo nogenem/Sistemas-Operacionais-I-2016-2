@@ -29,8 +29,10 @@ HardDisk::HardDisk(const HardDisk& orig) {
 HardDisk::~HardDisk() {
 }
 
-void HardDisk::interrupt_handler() {
-
+void HardDisk::interrupt_handler() {     // Hard Disk Interrupt Handler
+    // INSERT YOUR CODE HERE
+    // ...
+    
 }
 
 void HardDisk::flush() {

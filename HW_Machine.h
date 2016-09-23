@@ -33,50 +33,32 @@ private:
 public:       
 
     static HW_CPU* CPU() {
-        static HW_CPU* _cpu;
-        if (_cpu == nullptr) {
-            _cpu = new HW_CPU();
-        }
+        static HW_CPU* _cpu = new HW_CPU();
         return _cpu;
     }
 
     static HW_RAM* RAM() {
-        static HW_RAM* _ram;
-        if (_ram == nullptr) {
-            _ram = new HW_RAM();
-        }
+        static HW_RAM* _ram= new HW_RAM();
         return _ram;
     }
 
     static HW_HardDisk* HardDisk() {
-        static HW_HardDisk* _hardDisk;
-        if (_hardDisk == nullptr) {
-            _hardDisk = new HW_HardDisk();
-        }
+        static HW_HardDisk* _hardDisk= new HW_HardDisk();
         return _hardDisk;
     }
 
     static HW_Timer* Timer() {
-        static HW_Timer* _timer;
-        if (_timer == nullptr) {
-            _timer = new HW_Timer();
-        }
+        static HW_Timer* _timer = new HW_Timer();
         return _timer;
     }
 
     static HW_DMA* DMA() {
-        static HW_DMA* _dma;
-        if (_dma == nullptr) {
-            _dma = new HW_DMA();
-        }
+        static HW_DMA* _dma = new HW_DMA();
         return _dma;
     }
 
     static HW_MMU* MMU() {
-        static HW_MMU* _mmu;
-        if (_mmu == nullptr) {
-            _mmu = new HW_MMU();
-        }
+        static HW_MMU* _mmu= new HW_MMU();
         return _mmu;
     }
       

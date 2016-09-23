@@ -15,6 +15,7 @@
 #define APPLICATION_H
 
 #include <list>
+#include <iostream>
 
 #include "Mediator_CPU.h"
 

@@ -54,7 +54,7 @@ void HW_CPU::pulse() {
     unsigned int opcode, rs, rt, rd, shamt, funct, addr;
     int constt;
     opcode = (instruction & 0xFC000000) >> IFormat::off_opcode;
-    rs = (instruction & 0x02E00000) >> IFormat::off_rs;
+    rs = (instruction & 0x03E00000) >> IFormat::off_rs;
     rt = (instruction & 0x001F0000) >> IFormat::off_rt;
     rd = (instruction & 0x0000F800) >> IFormat::off_rd;   // R-type only
     shamt = (instruction & 0x000007C0) >> IFormat::off_shamt; // R-type only

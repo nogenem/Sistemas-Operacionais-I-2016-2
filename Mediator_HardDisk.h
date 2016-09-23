@@ -49,7 +49,7 @@ private:
     Operation _operation;
     HW_HardDisk::blockNumber _blockNumber;
     HW_HardDisk::DiskSector* _diskSector;
-    int _priority;
+    int _priority; // this attribute MUST BE the one used to sort the Schelung_Queue, no matter the scheduler algorithm
 };
 
 class HardDisk {

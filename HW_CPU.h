@@ -59,8 +59,8 @@ public:
     enum IFormat {
         off_opcode = 26,
         off_rs = 21,
-        off_rd = 16,
-        off_rt = 11,
+        off_rd = 11,
+        off_rt = 16,
         off_shamt = 6,
         off_funct = 0,
         off_const = 0,

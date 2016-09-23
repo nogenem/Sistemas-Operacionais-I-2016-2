@@ -37,12 +37,12 @@ void HardDisk::flush() {
     
 }
 
-void HardDisk::writeBlock(const HW_HardDisk::blockNumber bn, const HW_HardDisk::DiskSector* block) {
+void HardDisk::writeBlock(DiskAccessRequest* request) {
     
 }
 
 
-void HardDisk::readBlock(const HW_HardDisk::blockNumber bn, HW_HardDisk::DiskSector* block) {
+void HardDisk::readBlock(DiskAccessRequest* request) {
     
 }
 

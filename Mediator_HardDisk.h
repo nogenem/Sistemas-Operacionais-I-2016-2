@@ -17,7 +17,30 @@
 #include "HW_HardDisk.h"
 
 class DiskAccessRequest {
-    
+public:
+    enum Operation {READ, WRITE};
+public:
+     DiskAccessRequest(Operation operation,HW_HardDisk::blockNumber blockNumber, HW_HardDisk::DiskSector* diskSector) {
+         _operation = operation;
+         _blockNumber = blockNumber;
+         _diskSector = diskSector;
+     }
+
+     HW_HardDisk::DiskSector* GetDiskSector() const {
+         return _diskSector;
+     }
+
+     HW_HardDisk::blockNumber GetBlockNumber() const {
+         return _blockNumber;
+     }
+
+     Operation GetOperation() const {
+         return _operation;
+     }
+private:
+    Operation _operation;
+    HW_HardDisk::blockNumber _blockNumber;
+    HW_HardDisk::DiskSector* _diskSector;
 };
 
 class HardDisk {
@@ -28,23 +51,16 @@ public:
     HardDisk(const HardDisk& orig);
     virtual ~HardDisk();
 public:
-    /**
-     * Save structures in ram into disk
-     */
     void flush();
-    /**
-     * Writes a block @param block into RAM structures
-     * @param bn The number of the block to be written
-     * @param block A pointer to the disk block.
-     */
-    void writeBlock(const HW_HardDisk::blockNumber bn, const HW_HardDisk::DiskSector* block);
+
+    void writeBlock(DiskAccessRequest* request);
 
     /**
      * Reads a block @param block
      * @param bn The number of the block to be read
      * @param block A pointer to the block
      */
-    void readBlock(const HW_HardDisk::blockNumber bn, HW_HardDisk::DiskSector* block);
+    void readBlock(DiskAccessRequest* request);
 
     /**
      * Sets the size of all blocks in the @class HardDisk

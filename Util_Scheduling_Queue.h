@@ -9,12 +9,9 @@
 #define	SCHEDULING_QUEUE_H
 
 #include <queue>
+#include <list>
 
-#include "Abstr_Thread.h"
-
-/**
- * Used by Scheduler to store Threads in the RUNNING state. This is the class for the READY_QUEUE
- */
+template <typename T>
 class Scheduling_Queue /* insert hierarchy if you want */ {
 public:
     Scheduling_Queue();
@@ -22,15 +19,16 @@ public:
     virtual ~Scheduling_Queue();
 public:
     bool empty();
-    void insert(Thread* t);
-    void remove(Thread* t);
+    void insert(T* t);
+    void remove(T* t);
     void pop(); // remove the top (head) element
-    Thread* top(); // returns the top (head) element
+    T* top(); // returns the top (head) element
 private:
     // INSERT YOUR CODE HERE
     // ...
-    //std::priority_queue<Thread*>* _queue;
-    std::list<Thread*>* _queue;
+    
+    //std::priority_queue<T*>* _queue;
+    std::list<T*>* _queue;
 };
 
 #endif	/* SCHEDULING_QUEUE_H */

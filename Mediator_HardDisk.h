@@ -16,6 +16,10 @@
 
 #include "HW_HardDisk.h"
 
+class DiskAccessRequest {
+    
+};
+
 class HardDisk {
     friend class ModuleInvoke_HardwareEvent;
     friend class ProblemTester;

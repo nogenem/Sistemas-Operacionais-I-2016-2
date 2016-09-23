@@ -37,78 +37,51 @@ private:
 
     virtual ~OperatingSystem() {
 
-    }
+    }    
 public:
 
-    static Scheduler* Process_Scheduler() {
-        static Scheduler* _processScheduler;
-        if (_processScheduler == nullptr) {
-            _processScheduler = new Scheduler();
-        }
+    static Scheduler<Thread>* Process_Scheduler() {
+        static Scheduler<Thread>* _processScheduler = new Scheduler<Thread>();
         return _processScheduler;
     }
 
     static FileSystem* File_System() {
-        static FileSystem* _fileSystem;
-        if (_fileSystem == nullptr) {
-            _fileSystem = new FileSystem();
-        }
+        static FileSystem* _fileSystem = new FileSystem();
         return _fileSystem;
     }
 
-    static Scheduler* Disk_Scheduler() {
-        static Scheduler* _diskScheduler;
-        if (_diskScheduler == nullptr) {
-            _diskScheduler = new Scheduler();
-        }
+    static Scheduler<DiskAccessRequest>* Disk_Scheduler() {
+        static Scheduler<DiskAccessRequest>* _diskScheduler = new Scheduler<DiskAccessRequest>();
         return _diskScheduler;
     }
 
     static MemoryManager* Memory_Manager() {
-        static MemoryManager* _memoryManager;
-        if (_memoryManager == nullptr) {
-            _memoryManager = new MemoryManager();
-        }
+        static MemoryManager* _memoryManager = new MemoryManager();
         return _memoryManager;
     }
 
     static Timer* Timer_Mediator() {
-        static Timer* _timer;
-        if (_timer == nullptr) {
-            _timer = new Timer(0);
-        }
+        static Timer* _timer = new Timer(0);
         return _timer;
     }
 
     static DMA* DMA_Mediator() {
-        static DMA* _dma;
-        if (_dma == nullptr) {
-            _dma = new DMA(0);
-        }
+        static DMA* _dma = new DMA(0);
         return _dma;
     }
 
     static CPU* CPU_Mediator() {
-        static CPU* _cpu;
-        if (_cpu == nullptr) {
-            _cpu = new CPU(0);
-        }
+        static CPU* _cpu = new CPU(0);
         return _cpu;
     }
 
     static MMU* MMU_Mediator() {
-        static MMU* _mmu;
-        if (_mmu == nullptr) {
-            _mmu = new MMU(0);
-        }
+        static MMU* _mmu = new MMU(0);
         return _mmu;
     }
 
     static HardDisk* HardDisk_Mediator() {
-        static HardDisk* _harddisk;
-        if (_harddisk == nullptr) {
-            _harddisk = new HardDisk(0);
-        }
+        static HardDisk* _harddisk = new HardDisk(0);
         return _harddisk;
     }
     

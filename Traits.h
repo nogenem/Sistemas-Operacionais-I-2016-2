@@ -109,7 +109,7 @@ template<> struct Traits<MemoryManager> {
     static constexpr ReplacementAlgorithm replacementAlgorithm = ReplacementAlgorithm::FIFO;
 };
 
-template<> struct Traits<Scheduler> {
+template<> struct Traits<Scheduler<Thread>> {
     static constexpr double timeSlice = 200.0; // time units
 };
 

@@ -7,43 +7,52 @@
 
 #include "Util_Scheduling_Queue.h"
 
-Scheduling_Queue::Scheduling_Queue() {
+template <typename T>
+Scheduling_Queue<T>::Scheduling_Queue() {
     // CHANGE AS NECESSARY IF YOU CHOOSE ANOTHER QUEUE
-    //_queue = new std::priority_queue<Thread*>();
-    _queue = new std::list<Thread*>();
+    
+    //_queue = new std::priority_queue<T*>();
+    _queue = new std::list<T*>();
 }
 
-Scheduling_Queue::Scheduling_Queue(const Scheduling_Queue& orig) {
+template <typename T>
+Scheduling_Queue<T>::Scheduling_Queue(const Scheduling_Queue& orig) {
 }
 
-Scheduling_Queue::~Scheduling_Queue() {
+template <typename T>
+Scheduling_Queue<T>::~Scheduling_Queue() {
 }
 
-bool Scheduling_Queue::empty() {
+template <typename T>
+bool Scheduling_Queue<T>::empty() {
     // CHANGE AS NECESSARY IF YOU CHOOSE ANOTHER QUEUE
     return _queue->empty();
 }
 
-void Scheduling_Queue::pop() {
+template <typename T>
+void Scheduling_Queue<T>::pop() {
     // CHANGE AS NECESSARY IF YOU CHOOSE ANOTHER QUEUE
     if (!_queue->empty()) {
         _queue->erase(_queue->begin());
     }
 }
 
-void Scheduling_Queue::remove(Thread* t) {
+template <typename T>
+void Scheduling_Queue<T>::remove(T* t) {
     _queue->remove(t);
 }
 
-Thread* Scheduling_Queue::top() {
+template <typename T>
+T* Scheduling_Queue<T>::top() {
     // CHANGE AS NECESSARY IF YOU CHOOSE ANOTHER QUEUE
     return (*_queue->begin());
 }
 
-void Scheduling_Queue::insert(Thread* t) {
+template <typename T>
+void Scheduling_Queue<T>::insert(T* t) {
     // CHANGE AS NECESSARY IF YOU CHOOSE ANOTHER QUEUE
     _queue->insert(_queue->begin(), t);
-    _queue->sort([] (const Thread* a, const Thread * b) {
-        return a->getPriority() <= b->getPriority();
+    _queue->sort([] (const T* a, const T * b) {
+        return true;////////////////////////a->getPriority() <= b->getPriority();
     });
 }

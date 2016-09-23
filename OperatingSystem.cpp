@@ -41,6 +41,7 @@ void OperatingSystem::Init() {
      if (mnemonic == "Process:exec()") {
          bincode = 0xFFFFFFFF; // - (HW_CPU::addi<<24) + 
      }
-     bincode = (HW_CPU::addi<<26) + (HW_CPU::s0<<21) + (HW_CPU::s1<<16) + 1;
+     //@TODO
+     bincode = (HW_CPU::addi<<26) + (HW_CPU::s0<<21) + (HW_CPU::s1<<16) + 1; // for tests purpose only
      return bincode;
  }

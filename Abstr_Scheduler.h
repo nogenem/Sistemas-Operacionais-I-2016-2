@@ -8,11 +8,11 @@
 #ifndef SCHEDULER_H
 #define	SCHEDULER_H
 
-#include "Abstr_Thread.h"
-#include "Util_Scheduling_Queue.h"
-
 #include <queue>
 
+#include "Util_Scheduling_Queue.h"
+
+template <typename T>
 class Scheduler {
     friend class ProblemTester;
 public:
@@ -26,16 +26,16 @@ public:
 
     }
 private:
-    Scheduling_Queue* _readyQueue;
-    Thread* _choosen;
+    Scheduling_Queue<T>* _readyQueue;
+    T* _choosen;
 public:
     static const bool preemptive = true;
 public:
-    Thread* choose(); // choose a new thread to run
-    Thread* choosen(); // returns the last choosen thread
+    T* choose(); // choose a new schedulingItem to run
+    T* choosen(); // returns the last choosen schedulingItem
     void reschedule();
-    void insert(Thread* thread);
-    Thread* remove(Thread* thread);
+    void insert(T* schedulingItem);
+    T* remove(T* schedulingItem);
 };
 
 #endif	/* SCHEDULER_H */

@@ -9,11 +9,18 @@
 #define	CPU_H
 
 #include "Abstr_Thread.h"
+#include "HW_CPU.h"
 
 class CPU {
 public:
     friend class ModuleInvoke_HardwareEvent;
     friend class ProblemTester;
+public:
+    typedef HW_CPU::Funct Funct;
+    typedef HW_CPU::IFormat IFormat;
+    typedef HW_CPU::Opcode Opcode;
+    typedef HW_CPU::RegNum RegNum;
+    typedef HW_CPU::Information Information;
 public:
     CPU(unsigned int instance);
     CPU(const CPU& orig);

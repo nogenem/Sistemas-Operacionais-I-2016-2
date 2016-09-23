@@ -16,8 +16,7 @@
 
 #include <list>
 
-#include "HW_MMU.h"
-#include "HW_CPU.h"
+#include "Mediator_CPU.h"
 
 class Application {
 public:
@@ -39,20 +38,28 @@ public:
 
     static Application DefaultBootApplication() {
         Application app;
-        HW_MMU::Information instruction;
+        CPU::Information instruction;
         // this dummy boot application just keeps invoking system calls over and over again (always incrementing the system call number: it cant'end well..).
    
         // 0: addi a0, zero, 0
-        instruction = (HW_CPU::addi << HW_CPU::off_opcode) + (HW_CPU::a0 << HW_CPU::off_rd) + (HW_CPU::zero << HW_CPU::off_rs) + (0 << HW_CPU::off_const);
+        instruction =   (CPU::Opcode::addi << CPU::IFormat::off_opcode) + 
+                        (CPU::RegNum::a0 << CPU::IFormat::off_rd) + 
+                        (CPU::RegNum::zero << CPU::IFormat::off_rs) + 
+                        (0 << CPU::IFormat::off_const);
         app.addCode(instruction);
         // 1: syscall
-        instruction = (HW_CPU::RType << HW_CPU::off_opcode) + (HW_CPU::syscall << HW_CPU::off_funct);
+        instruction =   (CPU::Opcode::RType << CPU::IFormat::off_opcode) + (
+                        CPU::Funct::syscall << CPU::IFormat::off_funct);
         app.addCode(instruction);
         // 2: addi a0, a0, 1
-        instruction = (HW_CPU::addi << HW_CPU::off_opcode) + (HW_CPU::a0 << HW_CPU::off_rd) + (HW_CPU::a0 << HW_CPU::off_rs) + (1 << HW_CPU::off_const);
+        instruction =   (CPU::Opcode::addi << CPU::IFormat::off_opcode) + 
+                        (CPU::RegNum::a0 << CPU::IFormat::off_rd) + 
+                        (CPU::RegNum::a0 << CPU::IFormat::off_rs) + 
+                        (1 << CPU::IFormat::off_const);
         app.addCode(instruction);
         // 3: j 1
-        instruction = (HW_CPU::j << HW_CPU::off_opcode) + (1 << HW_CPU::off_addr);
+        instruction =   (CPU::Opcode::j << CPU::IFormat::off_opcode) + 
+                        (1 << CPU::IFormat::off_addr);
         app.addCode(instruction);
         return app;
     }

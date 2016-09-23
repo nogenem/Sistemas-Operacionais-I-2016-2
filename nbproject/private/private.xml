@@ -23,20 +23,10 @@
             <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/HW_MMU.h</file>
         </group>
         <group name="Classes">
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/Simulator.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_CPU.h</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/OperatingSystem.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_Timer.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/Abstr_Process.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/Module.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_MMU.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_Machine.h</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_CPU.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/ModuleInvoke_PulseExecution.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/main.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/HW_RAM.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/Application.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/OperatingSystemSimulator/removed/ModuleCreate.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/ModuleInvoke_PulseExecution.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/Traits.h</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/main.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/ModuleInvoke_PulseExecution.h</file>
         </group>
     </open-files>
 </project-private>

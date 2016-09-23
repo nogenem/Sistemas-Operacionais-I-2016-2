@@ -149,7 +149,8 @@ void Thread::dispatch(Thread* previous, Thread* next) {
         next->_state = Thread::State::RUNNING;
         next->_accountInfo._dispatchedTime = tnow;
         // e retirada da fila de prontos
-        OperatingSystem::Process_Scheduler()->remove(next);
+//@TODO: SOLVE REFERENCE PROBLEM
+////        OperatingSystem::Process_Scheduler()->remove(next);
         // deve ser verificado se a thread anterior (previous) é diferente de nula e também se é diferente da próxma thread
         if ((previous != nullptr) && (previous != next)) {
             // ter seus atributos atualizados
@@ -159,7 +160,8 @@ void Thread::dispatch(Thread* previous, Thread* next) {
                 // a thread anterior deve passar para o estado READY
                 previous->_state = Thread::State::READY;
                 //  e ser colocada na fila de prontos
-                OperatingSystem::Process_Scheduler()->insert(previous);
+//@TODO: SOLVE REFERENCE PROBLEM
+////               OperatingSystem::Process_Scheduler()->insert(previous);
             }
             // fazer a troca de contexto entre as threads
             CPU::switch_context(previous, next);

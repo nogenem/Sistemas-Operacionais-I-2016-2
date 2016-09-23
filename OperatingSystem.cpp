@@ -34,6 +34,19 @@ void OperatingSystem::Init() {
     SetBootApplication(Application::DefaultBootApplication());
 }
 
+
+void OperatingSystem::ExecuteTestCode() {
+    // INSERT HERE YOUR CODE
+    // You can write a test code that will be executed and will invoke system calls or whenever you want
+    //...
+    
+    // Process:exec();
+    //...
+}
+
+ /*
+  Not used
+  */
  HW_MMU::Information OperatingSystem::asmm(std::string mnemonic) {
      HW_MMU::Information bincode;
      /* @TODO 

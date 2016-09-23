@@ -39,6 +39,8 @@ private:
 
     }    
 public:
+    
+    static void ExecuteTestCode();
 
     static Scheduler<Thread>* Process_Scheduler() {
         static Scheduler<Thread>* _processScheduler = new Scheduler<Thread>();

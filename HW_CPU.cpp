@@ -137,13 +137,16 @@ void HW_CPU::pulse() {
                     // invoke an operating system syscall call
                     // ...
                     switch (_registers[a0]) {
-                        case 0:
-                            Process::exec();
+                        case 0: // special system call to help creating a test application
+                            OperatingSystem::ExecuteTestCode();
                             break;
                         case 1:
+                            Process::exec();
+                            break;
+                        case 2:
                             Process::exit(0);
                             break;
-                        case 2: //...
+                        case 3: //...
                             break;
                         // INSERT OTHERS SYSTEM CALLS
                         // ...

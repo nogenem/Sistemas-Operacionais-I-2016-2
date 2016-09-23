@@ -50,6 +50,15 @@ void HardDisk::setBlockSize(const unsigned int blocksize) {
     
 }
 
+void HardDisk::accessBlock(DiskAccessRequest* request) {
+    if (request->GetOperation() == DiskAccessRequest::READ) {
+        readBlock(request);
+    } else {
+        writeBlock(request);
+    }
+        
+}
+
 unsigned int HardDisk::getBlockSize() {
     
 }

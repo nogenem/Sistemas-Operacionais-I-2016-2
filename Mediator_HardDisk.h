@@ -37,10 +37,19 @@ public:
      Operation GetOperation() const {
          return _operation;
      }
+
+     void SetPriority(int _priority) {
+         this->_priority = _priority;
+     }
+
+     int GetPriority() const {
+         return _priority;
+     }
 private:
     Operation _operation;
     HW_HardDisk::blockNumber _blockNumber;
     HW_HardDisk::DiskSector* _diskSector;
+    int _priority;
 };
 
 class HardDisk {
@@ -54,18 +63,11 @@ public:
     void flush();
 
     void writeBlock(DiskAccessRequest* request);
-
-    /**
-     * Reads a block @param block
-     * @param bn The number of the block to be read
-     * @param block A pointer to the block
-     */
+    
     void readBlock(DiskAccessRequest* request);
+    
+    void accessBlock(DiskAccessRequest* request); // more generic than read or write. Invoke read or write inside it
 
-    /**
-     * Sets the size of all blocks in the @class HardDisk
-     * @param blocksize The number of bytes per block
-     */
     void setBlockSize(const unsigned int blocksize);
 
     /**

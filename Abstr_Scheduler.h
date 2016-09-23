@@ -6,17 +6,24 @@
  */
 
 #ifndef SCHEDULER_H
-#define	SCHEDULER_H
+#define SCHEDULER_H
+
+
 
 #include <queue>
 
 #include "Util_Scheduling_Queue.h"
+#include "Simul_Debug.h"
 
 template <typename T>
 class Scheduler {
     friend class ProblemTester;
 public:
-    Scheduler();
+
+    Scheduler() {
+        _readyQueue = new Scheduling_Queue<T>();
+        _choosen = nullptr;
+    }
 
     Scheduler(const Scheduler& orig) {
 
@@ -31,12 +38,45 @@ private:
 public:
     static const bool preemptive = true;
 public:
-    T* choose(); // choose a new schedulingItem to run
-    T* choosen(); // returns the last choosen schedulingItem
-    void reschedule();
-    void insert(T* schedulingItem);
-    T* remove(T* schedulingItem);
+
+    T* choose() { // choose a new schedulingItem to run
+        Debug::cout(Debug::Level::trace, "Scheduler::choose()");
+        // INSERT YOUR CODE HERE
+        // ...
+        if (_readyQueue->empty()) {
+            return nullptr;
+        } else {
+            T* result = _readyQueue->top();
+            _choosen = result;
+            //_readyQueue->pop();
+            return result;
+        }
+    }
+
+    T* choosen() {
+        return _choosen;
+    }
+
+    void reschedule() {
+        Debug::cout(Debug::Level::trace, "Scheduler::reschedule()");
+        if (!this->_readyQueue->empty()) {
+            // INSERT YOUR CODE HERE
+            // ...
+
+        }
+    }
+
+    void insert(T * schedulingItem) {
+        this->_readyQueue->insert(schedulingItem);
+    }
+
+    T * remove(T * schedulingItem) {
+        // remove a specific schedulingItem from the readyQueue
+        this->_readyQueue->remove(schedulingItem);
+    }
+
 };
 
-#endif	/* SCHEDULER_H */
+
+#endif /* SCHEDULER_H */
 

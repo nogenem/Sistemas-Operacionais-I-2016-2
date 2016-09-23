@@ -23,10 +23,8 @@
             <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/HW_MMU.h</file>
         </group>
         <group name="Classes">
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/ModuleInvoke_PulseExecution.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/Traits.h</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/main.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/ModuleInvoke_PulseExecution.h</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/Application.h</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/HW_CPU.h</file>
         </group>
     </open-files>
 </project-private>

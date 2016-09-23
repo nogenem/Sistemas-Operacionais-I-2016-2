@@ -150,7 +150,9 @@ void Thread::dispatch(Thread* previous, Thread* next) {
         next->_accountInfo._dispatchedTime = tnow;
         // e retirada da fila de prontos
 //@TODO: SOLVE REFERENCE PROBLEM
-////        OperatingSystem::Process_Scheduler()->remove(next);
+        Scheduler<Thread>* sch = OperatingSystem::Process_Scheduler();
+        Thread* t = sch->choose();
+        //OperatingSystem::Process_Scheduler()->remove(next);
         // deve ser verificado se a thread anterior (previous) é diferente de nula e também se é diferente da próxma thread
         if ((previous != nullptr) && (previous != next)) {
             // ter seus atributos atualizados

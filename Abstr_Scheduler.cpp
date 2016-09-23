@@ -5,8 +5,14 @@
  * Created on September 27, 2015, 11:19 AM
  */
 
+#if 0
+
 #include "Simul_Debug.h"
 #include "Abstr_Scheduler.h"
+#include "Abstr_Thread.h"
+#include "Mediator_HardDisk.h"
+
+
 
 template <typename T>
 Scheduler<T>::Scheduler() {
@@ -54,3 +60,5 @@ void Scheduler<T>::reschedule() {
 
     }
 }
+
+#endif

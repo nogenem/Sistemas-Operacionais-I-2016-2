@@ -37,8 +37,8 @@ private:
 
 public:
 
-    static Application DefaultBootApplication() {
-        Application app;
+    static Application* DefaultBootApplication() {
+        Application* app = new Application();;
         CPU::Information instruction;
         // this dummy boot application just keeps invoking system calls over and over again (always incrementing the system call number: it cant'end well..).
    
@@ -47,21 +47,21 @@ public:
                         (CPU::RegNum::a0 << CPU::IFormat::off_rd) + 
                         (CPU::RegNum::zero << CPU::IFormat::off_rs) + 
                         (0 << CPU::IFormat::off_const);
-        app.addCode(instruction);
+        app->addCode(instruction);
         // 1: syscall
         instruction =   (CPU::Opcode::RType << CPU::IFormat::off_opcode) + (
                         CPU::Funct::syscall << CPU::IFormat::off_funct);
-        app.addCode(instruction);
+        app->addCode(instruction);
         // 2: addi a0, a0, 1
         instruction =   (CPU::Opcode::addi << CPU::IFormat::off_opcode) + 
                         (CPU::RegNum::a0 << CPU::IFormat::off_rd) + 
                         (CPU::RegNum::a0 << CPU::IFormat::off_rs) + 
                         (1 << CPU::IFormat::off_const);
-        app.addCode(instruction);
+        app->addCode(instruction);
         // 3: j 1
         instruction =   (CPU::Opcode::j << CPU::IFormat::off_opcode) + 
                         (1 << CPU::IFormat::off_addr);
-        app.addCode(instruction);
+        app->addCode(instruction);
         return app;
     }
 };

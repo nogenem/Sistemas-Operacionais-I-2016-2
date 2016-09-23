@@ -23,3 +23,12 @@ MMU::MMU(const MMU& orig) {
 MMU::~MMU() {
 }
 
+void MMU::protection_error_interrupt_handler() {
+    // INSERT YOUR CODE HERE
+    // ...
+}
+
+void MMU::chunk_fault_interrupt_handler() {
+    // INSERT YOUR CODE HERE
+    // ...
+}

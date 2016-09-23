@@ -14,7 +14,14 @@
 #ifndef MMU_H
 #define MMU_H
 
+#include "HW_MMU.h"
+
+
 class MMU {
+    friend class ModuleInvoke_HardwareEvent;
+    friend class ProblemTester;    
+public:
+    typedef HW_MMU::PhysicalAddress PhysicalAddress; 
 public:
     MMU(unsigned int instance);
     MMU(const MMU& orig);
@@ -25,6 +32,10 @@ public:
     // ...
 private:
     unsigned int _instance;
+    
+private:
+    static void protection_error_interrupt_handler();
+    static void chunk_fault_interrupt_handler();
 };
 
 #endif /* MMU_H */

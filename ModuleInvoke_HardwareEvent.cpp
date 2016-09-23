@@ -48,6 +48,12 @@ void ModuleInvoke_HardwareEvent::do_run(Entity* entity) {
     } else if (method == "DMA::interrupt_handler()") {
         DMA::interrupt_handler();
         simulator->removeEntity(entity);
+    } else if (method == "MMU::chunk_fault_interrupt_handler()") {
+        MMU::chunk_fault_interrupt_handler();
+        simulator->removeEntity(entity);
+    } else if (method == "MMU::protection_error_interrupt_handler()") {
+        MMU::protection_error_interrupt_handler();
+        simulator->removeEntity(entity);
     }
 
   

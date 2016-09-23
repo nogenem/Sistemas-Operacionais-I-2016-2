@@ -47,7 +47,7 @@ void HW_CPU::writeRegister(HW_CPU::RegNum registerNum, HW_CPU::Register value) {
  */
 void HW_CPU::pulse() {
     // fetch instruction
-    Information instruction = HW_Machine::MMU()->read(this->_registers[RegNum::pc]);
+    Information instruction = HW_Machine::MMU()->readMemory(this->_registers[RegNum::pc]);
     _registers[RegNum::pc]++;
 
     // decode instruction
@@ -100,7 +100,7 @@ void HW_CPU::pulse() {
             _registers[rd] = constt << 16;
             break;
         case Opcode::lw:
-            _registers[rd] = HW_Machine::MMU()->read(_registers[rs] + constt);
+            _registers[rd] = HW_Machine::MMU()->readMemory(_registers[rs] + constt);
             break;
         case Opcode::ori:
             _registers[rd] <= _registers[rs] | constt;
@@ -109,7 +109,7 @@ void HW_CPU::pulse() {
             _registers[rd] <= (_registers[rs] < constt) ? 1 : 0;
             break;
         case Opcode::sw:
-            HW_Machine::MMU()->write(_registers[rs] + constt, _registers[rd]);
+            HW_Machine::MMU()->writeMemory(_registers[rs] + constt, _registers[rd]);
             break;
         case Opcode::RType:
             switch (funct) {

@@ -49,6 +49,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/HW_DMA.o \
 	${OBJECTDIR}/HW_HardDisk.o \
 	${OBJECTDIR}/HW_MMU.o \
+	${OBJECTDIR}/HW_MMU_Continuous.o \
+	${OBJECTDIR}/HW_MMU_Paging.o \
 	${OBJECTDIR}/HW_Machine.o \
 	${OBJECTDIR}/HW_RAM.o \
 	${OBJECTDIR}/HW_Timer.o \
@@ -172,6 +174,16 @@ ${OBJECTDIR}/HW_MMU.o: HW_MMU.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HW_MMU.o HW_MMU.cpp
+
+${OBJECTDIR}/HW_MMU_Continuous.o: HW_MMU_Continuous.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HW_MMU_Continuous.o HW_MMU_Continuous.cpp
+
+${OBJECTDIR}/HW_MMU_Paging.o: HW_MMU_Paging.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HW_MMU_Paging.o HW_MMU_Paging.cpp
 
 ${OBJECTDIR}/HW_Machine.o: HW_Machine.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -10,15 +10,20 @@
 #include "HW_CPU.h"
 #include "HW_Machine.h"
 
-void OperatingSystem::SetBootApplication(Application app) {
-    std::list<Application::Information> code = app.getCode();
-    HW_CPU::Register address = HW_Machine::CPU()->readRegister(HW_CPU::pc);
+
+void OperatingSystem::LoadApplication(Application* app, MMU::PhysicalAddress address) {
+    std::list<Application::Information> code = app->getCode();
     HW_MMU::Information info;
     for(std::list<HW_MMU::Information>::iterator it = code.begin(); it != code.end(); it++) {
         info = (*it);
         HW_Machine::RAM()->write(address, info);
         address++;
-    }
+    }    
+}
+
+void OperatingSystem::SetBootApplication(Application* app) {
+    HW_CPU::Register address = HW_Machine::CPU()->readRegister(HW_CPU::pc);
+    LoadApplication(app, address);
 }
 
 

@@ -20,22 +20,21 @@ public:
     typedef unsigned int PhysicalAddress;
     typedef unsigned long LogicalAddress;
     typedef unsigned int Information; // 32 bits, just like MIPS/DLX (memory is 32 bits wide. PC=PC+1, instead)
+    typedef unsigned int Register;
+    
+    enum Operation {Read, Write};
 public:
     HW_MMU();
     HW_MMU(const HW_MMU& orig);
     virtual ~HW_MMU();
 public:
-    Information read(LogicalAddress address);
-    void write(LogicalAddress address, Information data);
+    Information readMemory(LogicalAddress address);
+    void writeMemory(LogicalAddress address, Information data);
+    virtual Register readRegister(unsigned int registerNum);
+    virtual void writeRegister(unsigned int registerNum, Register value);
 protected:
-    PhysicalAddress getPhysical() const;
-    void setLogical(LogicalAddress _logical);
+    virtual PhysicalAddress translateAddress(LogicalAddress logical, Operation operation);
 
-    PhysicalAddress translateAddress(LogicalAddress logical);
-private:
-    LogicalAddress _logical;
-    PhysicalAddress _physical;
-    
 };
 
 #endif /* HW_MMU_H */

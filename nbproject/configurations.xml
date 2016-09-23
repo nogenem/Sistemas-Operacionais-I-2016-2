@@ -18,6 +18,8 @@
       <itemPath>HW_DMA.h</itemPath>
       <itemPath>HW_HardDisk.h</itemPath>
       <itemPath>HW_MMU.h</itemPath>
+      <itemPath>HW_MMU_Continuous.h</itemPath>
+      <itemPath>HW_MMU_Paging.h</itemPath>
       <itemPath>HW_Machine.h</itemPath>
       <itemPath>HW_RAM.h</itemPath>
       <itemPath>HW_Timer.h</itemPath>
@@ -64,6 +66,8 @@
       <itemPath>HW_DMA.cpp</itemPath>
       <itemPath>HW_HardDisk.cpp</itemPath>
       <itemPath>HW_MMU.cpp</itemPath>
+      <itemPath>HW_MMU_Continuous.cpp</itemPath>
+      <itemPath>HW_MMU_Paging.cpp</itemPath>
       <itemPath>HW_Machine.cpp</itemPath>
       <itemPath>HW_RAM.cpp</itemPath>
       <itemPath>HW_Timer.cpp</itemPath>
@@ -180,6 +184,14 @@
       <item path="HW_MMU.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="HW_MMU.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HW_MMU_Continuous.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HW_MMU_Continuous.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HW_MMU_Paging.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HW_MMU_Paging.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="HW_Machine.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -372,6 +384,14 @@
       <item path="HW_MMU.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="HW_MMU.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HW_MMU_Continuous.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HW_MMU_Continuous.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HW_MMU_Paging.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HW_MMU_Paging.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="HW_Machine.cpp" ex="false" tool="1" flavor2="0">
       </item>

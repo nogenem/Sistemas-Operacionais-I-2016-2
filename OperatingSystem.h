@@ -87,7 +87,8 @@ public:
         return _harddisk;
     }
     
-    static void SetBootApplication(Application app);
+    static void SetBootApplication(Application* app);    
+    static void LoadApplication(Application* app, MMU::PhysicalAddress address);
     static void Init();
     
 private:

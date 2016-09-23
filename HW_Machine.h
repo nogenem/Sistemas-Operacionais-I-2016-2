@@ -18,6 +18,8 @@
 #include "HW_DMA.h"
 #include "HW_HardDisk.h"
 #include "HW_MMU.h"
+#include "HW_MMU_Continuous.h"
+#include "HW_MMU_Paging.h"
 #include "HW_RAM.h"
 #include "HW_Timer.h"
 
@@ -58,7 +60,17 @@ public:
     }
 
     static HW_MMU* MMU() {
-        static HW_MMU* _mmu= new HW_MMU();
+        static HW_MMU* _mmu;
+        if (_mmu == nullptr) {
+            Traits<Model>::ProblemSolving problem = Traits<Model>::problemChoosen;
+            if ((problem == Traits<Model>::BestFit111) || (problem == Traits<Model>::WorstFit112)) {
+                _mmu = new HW_MMU_Continuous(); // mmu for continuous memory (dynamic partitions)
+            } else if ((problem == Traits<Model>::LFU122) || (problem == Traits<Model>::LRU121) || (problem == Traits<Model>::NRU123)) {
+                _mmu = new HW_MMU_Paging(); // mmu for paging
+            } else {
+                _mmu = new HW_MMU(); // just a dummy MMU
+            }
+        }
         return _mmu;
     }
       

@@ -20,7 +20,7 @@ class HW_CPU {
     friend class ProblemTester;
 public:
     typedef HW_MMU::Information Information;
-    typedef unsigned int Register;
+    typedef HW_MMU::Register Register;
 
     enum RegNum {
         zero=0, at=1, v0=2,v1=3, a0=4, a1=5, a2=6, a3=7, 

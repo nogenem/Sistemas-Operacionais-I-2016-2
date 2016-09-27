@@ -23,16 +23,18 @@
             <file>file:/home/cancian/INE5412_OperatingSystemSimulator/BackupOldStuffDontWork/removed/HW_MMU.h</file>
         </group>
         <group name="Classes">
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/ModuleInvoke_PulseExecution.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/HW_CPU.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/HW_HardDisk.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/HW_MMU_Paging.h</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/HW_MMU_Continuous.h</file>
             <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/OperatingSystem.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/Util_Scheduling_Queue.h</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/OperatingSystem.h</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/HW_MMU_Paging.cpp</file>
             <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/Application.h</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/Mediator_HardDisk.h</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/HW_Machine.h</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/HW_MMU.h</file>
             <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/main.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/Util_Scheduling_Queue.cpp</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/Abstr_Thread.h</file>
-            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/HW_CPU.h</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/HW_MMU_Continuous.cpp</file>
+            <file>file:/home/cancian/Laboratory/Software_Lab/IA32_Architecture/INE5412/20162-INE5412-SC-Theme1-StartPoint/HW_MMU.cpp</file>
         </group>
     </open-files>
 </project-private>

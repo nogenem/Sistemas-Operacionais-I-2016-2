@@ -45,7 +45,6 @@ HW_MMU::PhysicalAddress HW_MMU_Paging::translateAddress(HW_MMU::LogicalAddress l
     bool isPageInMemory = (pageEntry & HW_MMU_Paging::mask_vality) > 0;
     bool hasProtectionError = (!(pageEntry & HW_MMU_Paging::mask_read) && (operation==Operation::Read) );
     hasProtectionError |= (!(pageEntry & HW_MMU_Paging::mask_write) && (operation==Operation::Write) );
-    hasProtectionError |= (!(pageEntry & HW_MMU_Paging::mask_write) && (operation==Operation::Write) );
     
     if (hasProtectionError) {
         // schedule an event to notify that a protection error just happened

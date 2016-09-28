@@ -24,6 +24,7 @@ public:
          _operation = operation;
          _blockNumber = blockNumber;
          _diskSector = diskSector;
+         _priority = 0;
      }
 
      HW_HardDisk::DiskSector* GetDiskSector() const {

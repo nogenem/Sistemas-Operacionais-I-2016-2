@@ -9,6 +9,7 @@
 #include "Application.h"
 #include "HW_CPU.h"
 #include "HW_Machine.h"
+#include <list>
 
 
 void OperatingSystem::LoadApplication(Application* app, MMU::PhysicalAddress address) {
@@ -45,8 +46,30 @@ void OperatingSystem::ExecuteTestCode() {
     // You can write a test code that will be executed and will invoke system calls or whenever you want
     //...
     
-    // Process:exec();
-    //...
+	Scheduler<DiskAccessRequest>* scheduler = OperatingSystem::Disk_Scheduler();
+	HW_HardDisk::DiskSector* diskSector;
+	DiskAccessRequest *request;
+
+    // Adicionar requisicoes de escrita/leitura ao escalonador de disco
+	//TODO rever isso
+	diskSector = new HW_HardDisk::DiskSector{0,0,550,1};
+	request = new DiskAccessRequest(DiskAccessRequest::WRITE,1,diskSector);
+	scheduler->insert(request);
+
+	diskSector = new HW_HardDisk::DiskSector{23,0,50,1};
+	request = new DiskAccessRequest(DiskAccessRequest::WRITE,1,diskSector);
+	scheduler->insert(request);
+
+	diskSector = new HW_HardDisk::DiskSector{0,0,550,1};
+	request = new DiskAccessRequest(DiskAccessRequest::READ,1,diskSector);
+	scheduler->insert(request);
+
+    // Pegar a 1* requisicao do escalonador
+	request = scheduler->choose();
+
+    // Chamar o Mediator_HardDisk passando esta primeira requisicao
+	HardDisk* hd_mediator = OperatingSystem::HardDisk_Mediator();
+	hd_mediator->accessBlock(request);
 }
 
  /*

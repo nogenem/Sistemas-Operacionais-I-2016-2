@@ -50,6 +50,7 @@ public: // getters and setters
     Model* getModel() const;
     double getTnow() const;
     Entity* getEntity();
+    Module* getModule();
     void setModel(Model* _model);
     std::list<Entity*>* getEntities() const;
     std::list<Event*>* getEvents() const;
@@ -63,6 +64,7 @@ private: // 1:n
 private: // associated objects
     Model* _model;
     Entity* _actualEntity;
+    Module* _actualModule;
 private: //control
     bool _pauseRequested;
     bool _stopRequested;

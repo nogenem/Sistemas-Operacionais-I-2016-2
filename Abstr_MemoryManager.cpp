@@ -28,7 +28,7 @@ MemoryManager::~MemoryManager() {
 
 MemoryChunk* MemoryManager::allocateMemory(unsigned int size) {
     Debug::cout(Debug::Level::trace, "MemoryManager::allocateMemory(" + std::to_string(size) + ")");
-    // INSERT YOUR CODE TO ALLOCATE MEMOTY FOR THE PROCESS
+    // INSERT YOUR CODE TO ALLOCATE MEMORY (A CHUNK) FOR THE PROCESS
     // ...
     
     return nullptr;
@@ -36,7 +36,7 @@ MemoryChunk* MemoryManager::allocateMemory(unsigned int size) {
 
 void MemoryManager::deallocateMemory(MemoryChunk* chunk) {
     Debug::cout(Debug::Level::trace, "MemoryManager::deallocateMemory(" + std::to_string(reinterpret_cast<unsigned long> (chunk)) + ")");
-    // INSERT YOUR CODE TO DEALLOCATE MEMORY OF THE PROCESS
+    // INSERT YOUR CODE TO DEALLOCATE MEMORY (A CHUNK) OF THE PROCESS
     // ...
     
      

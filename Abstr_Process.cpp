@@ -26,8 +26,8 @@ Process::Process(unsigned int parentId) {
     unsigned int size;
     for (unsigned int i = 0; i < numSegments; i++) {
         size = Simulator::generate_uniform_distribution(250 / (numSegments + 3), 250 / numSegments);
-        MemoryChunk* chunks = new MemoryChunk(lastLogicalAddress, size, false, false, false);
-        _memInfo._chunks->insert(_memInfo._chunks->begin(), chunks);
+        MemoryChunk* logicalChunk = new MemoryChunk(lastLogicalAddress, size, false, false, false); // logical chunks that have to be allocated into memory
+        _memInfo._chunks->insert(_memInfo._chunks->begin(), logicalChunk);
         lastLogicalAddress += size;
     }
     // INSERT YOUR CODE HERE

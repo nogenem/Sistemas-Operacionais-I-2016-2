@@ -58,7 +58,7 @@ template<> struct Traits<Model> {
         // DevicesAnsTime
         Alarm12, I2C1141, SPI1142 };
     static const ProblemType   problemType = MemoryManagement; // SET HERE THE COMPUTACIONAL TYPE YOU ARE SOLVING (THE ONE YOU HAVE CHOOSEN AS TOUR "SC")
-    static const ProblemSolving problemChoosen = BestFit111; // SET HERE THE COMPUTACIONAL SYSTEM YOU ARE SOLVING (THE ONE YOU HAVE CHOOSEN AS TOUR "SC")
+    static const ProblemSolving problemChoosen = Segment13; // SET HERE THE COMPUTACIONAL SYSTEM YOU ARE SOLVING (THE ONE YOU HAVE CHOOSEN AS TOUR "SC")
     static constexpr double simulationLength = 500.0; // time units
     static constexpr double firstCreation = 0.0;       // time units
 };
@@ -133,7 +133,7 @@ template<> struct Traits<HW_Timer> {
 };
 
 template<> struct Traits<HW_MMU> {
-    static constexpr unsigned int RAMsize = 512; // information units (eg: bytes)
+    static constexpr unsigned int RAMsize = 1024; // information units (eg: bytes) in the physical RAM. RAM width is "Information" (an unsigned int)
 };
 
 template<> struct Traits<HW_HardDisk> {

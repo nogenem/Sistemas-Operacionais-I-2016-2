@@ -20,10 +20,10 @@ class HW_MMU_Segmentation : public HW_MMU {
 public:
 
     enum ILogAddr {
-        off_LogicalSegment = 16, 
-        off_SegmentOffset = 0,
-        mask_LogicalSegment = 0xFFFF0000,
-        mask_SegmentOffset  = 0x0000FFFF   // segment size limited to 16 bits so a segment entry fits one "Information"
+        mask_LogicalSegment = 0xF0000000,  // four bits for the logical segment number. Therefore, only 16 segments are allowed
+        mask_SegmentOffset  = 0x0FFFFFFF,  // at most 2^24 bits for the segment limit
+        off_LogicalSegment = 28, 
+        off_SegmentOffset  = 0
     };
 
     enum SegmentEntry {
@@ -33,10 +33,17 @@ public:
         mask_exec   = 0x10000000,
         mask_M      = 0x08000000,
         mask_R      = 0x04000000,
-        mask_Base   = 0x03FF0000,
-        mask_Limit  = 0x0000FFFF,
-        off_Base = 16,
-        off_Limit = 0
+        mask_Base   = 0x00FFFFFF,  // the fields until this points stays in one entry (Information) at address (+0)
+        
+        mask_Limit  = 0x0FFFFFFF, // this field occupies an entity entry (Information). Therefor one segment descriptor occupies two memory addresses
+        off_vality = 31,
+        off_read   = 30,
+        off_write  = 29,
+        off_exec   = 28,
+        off_M      = 27,
+        off_R      = 26,
+        off_Base   = 0,
+        off_Limit  = 0 // in the second address (+1)
     };
 public:
     HW_MMU_Segmentation();
@@ -48,7 +55,7 @@ public:
 protected:
     virtual PhysicalAddress translateAddress(LogicalAddress logical, Operation operation);
 private:
-    PhysicalAddress _STBR;
+    PhysicalAddress _STBR; // the Segment Table Base Register (analogous to the GDT register in IA32 architecture)
 
 };
 

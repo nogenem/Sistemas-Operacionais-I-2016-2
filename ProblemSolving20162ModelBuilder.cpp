@@ -61,7 +61,7 @@ Model * ProblemSolving20162ModelBuilder::buildModel() {
 
     // entity attributes
     model->addEntityAttribute(new Attribute("MethodName", ""));
-    //model->addEntityAttribute(new Attribute("Attribute2", "0"));    
+    model->addEntityAttribute(new Attribute("ExecutionStep", "0"));    
 
     // time infos
     model->setReplicationLength(Traits<Model>::simulationLength);

@@ -12,9 +12,14 @@
  */
 
 #include "Mediator_MMU.h"
+#include "HW_Machine.h"
 
 MMU::MMU(unsigned int instance) {
     _instance = instance;
+    
+    //INSERT YOUR CODE HERE
+    //...
+    
 }
 
 MMU::MMU(const MMU& orig) {

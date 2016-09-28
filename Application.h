@@ -42,13 +42,13 @@ public:
         CPU::Information instruction;
         // this dummy boot application just keeps invoking system calls over and over again (always incrementing the system call number: it cant'end well..).
    
-        // 0: addi a0, zero, 0
+        // 0: addi a0, zero, 0 (syscall 0 = ExecuteTestCode )
         instruction =   (CPU::Opcode::addi << CPU::IFormat::off_opcode) + 
                         (CPU::RegNum::a0 << CPU::IFormat::off_rd) + 
                         (CPU::RegNum::zero << CPU::IFormat::off_rs) + 
                         (0 << CPU::IFormat::off_const);
         app->addCode(instruction);
-        // 1: syscall
+        // 1: syscall 
         instruction =   (CPU::Opcode::RType << CPU::IFormat::off_opcode) + (
                         CPU::Funct::syscall << CPU::IFormat::off_funct);
         app->addCode(instruction);

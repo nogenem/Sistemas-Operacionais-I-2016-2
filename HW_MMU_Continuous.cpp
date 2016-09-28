@@ -18,7 +18,9 @@
 #include "Simulator.h"
 
 HW_MMU_Continuous::HW_MMU_Continuous() {
-}
+    // INSERT YOUR CODE HERE
+    // ...
+ }
 
 HW_MMU_Continuous::HW_MMU_Continuous(const HW_MMU_Continuous& orig) {
 }

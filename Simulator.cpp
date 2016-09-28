@@ -203,15 +203,15 @@ void Simulator::resume() {
 
 void Simulator::_processEvent(Event * event) {
     _actualEntity = event->getEntity();
-    Module* module = event->getModule();
+    _actualModule = event->getModule();
     _tnow = event->getTime();
     // process event
     double tBegin, tEnd;
     tBegin = _getRealCpuUsage();
     try {
-        module->run(_actualEntity); // invoke an specific module to run
+        _actualModule->run(_actualEntity); // invoke an specific module to run
     } catch (const int ex) {
-        Debug::cout(Debug::Level::error, "ERROR in module " + module->getName() + " run()");
+        Debug::cout(Debug::Level::error, "ERROR in module " + _actualModule->getName() + " run()");
     }
     tEnd = _getRealCpuUsage();
     double ellapsed = tEnd - tBegin;
@@ -241,6 +241,10 @@ Entity * Simulator::createEntity() {
 
 Entity * Simulator::getEntity() {
     return _actualEntity;
+}
+
+Module* Simulator::getModule() {
+    return _actualModule;
 }
 
 void Simulator::removeEntity(Entity * entity) {

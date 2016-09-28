@@ -133,7 +133,7 @@ template<> struct Traits<HW_Timer> {
 };
 
 template<> struct Traits<HW_MMU> {
-    static constexpr unsigned int RAMsize = 512; // information units (eg: bytes)
+    static constexpr unsigned int RAMsize = 1024; // information units (eg: bytes) in the physical RAM. RAM width is "Information" (an unsigned int)
 };
 
 template<> struct Traits<HW_HardDisk> {

@@ -63,6 +63,13 @@ public:
             // INSERT YOUR CODE HERE
             // ...
 
+        	// Atualiza a prioridade das requisições
+        	DiskAccessRequest *tmp = nullptr;
+        	for(T* request : this->_readyQueue){
+        		tmp = (DiskAccessRequest*)request;
+        		if(tmp != nullptr)
+        			tmp->UpdatePriority();
+        	}
         }
     }
 
@@ -73,6 +80,7 @@ public:
     T * remove(T * schedulingItem) {
         // remove a specific schedulingItem from the readyQueue
         this->_readyQueue->remove(schedulingItem);
+        return schedulingItem;
     }
 
 };

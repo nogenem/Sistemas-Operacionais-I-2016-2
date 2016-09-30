@@ -12,7 +12,10 @@
  */
 
 #include "Mediator_HardDisk.h"
+
+#include "Abstr_Scheduler.h"
 #include "HW_Machine.h"
+#include "OperatingSystem.h"
 
 HardDisk::HardDisk(unsigned int instance) {
     _instance = instance;
@@ -21,6 +24,25 @@ HardDisk::HardDisk(unsigned int instance) {
     _blocksize = hd->getDataRegister();
     hd->setCommandRegister(HW_HardDisk::GET_TOTALSECTORS);
     _maxBlocks = hd->getDataRegister();
+    hd->setCommandRegister(HW_HardDisk::GET_TRACKSPERSURFACE);
+    _tracksPerSurface = hd->getDataRegister();
+
+    // Adiciona os 2 jumps para fazer o disco sempre ir até as bordas
+    Scheduler<DiskAccessRequest>* scheduler = OperatingSystem::Disk_Scheduler();
+	HW_HardDisk::DiskSector* diskSector;
+	DiskAccessRequest *request;
+
+	// Request para jump no track 0
+	diskSector = new HW_HardDisk::DiskSector{{},0,0,0};
+	request = new DiskAccessRequest(DiskAccessRequest::JUMP,0,diskSector);
+	request->SetPriority(_tracksPerSurface);
+	scheduler->insert(request);
+
+	// Request para jump no track maxTracks-1
+	diskSector = new HW_HardDisk::DiskSector{{},0,_tracksPerSurface-1,0};
+	request = new DiskAccessRequest(DiskAccessRequest::JUMP,0,diskSector);
+	request->SetPriority(_tracksPerSurface-1);
+	scheduler->insert(request);
 }
 
 HardDisk::HardDisk(const HardDisk& orig) {
@@ -29,16 +51,40 @@ HardDisk::HardDisk(const HardDisk& orig) {
 HardDisk::~HardDisk() {
 }
 
+//TODO testar, documentar
 void HardDisk::interrupt_handler() {     // Hard Disk Interrupt Handler
     // INSERT YOUR CODE HERE
     // ...
 
+	HardDisk *hd = OperatingSystem::HardDisk_Mediator();
 	Scheduler<DiskAccessRequest>* scheduler = OperatingSystem::Disk_Scheduler();
 	DiskAccessRequest *request;
+	unsigned int maxTracks = hd->getTracksPerSurface();
 
-    // Pega a proxima requisicao do escalonador e a executa
+	// Remove a requisição que acabou de ser atendida
+	request = scheduler->choosen();
+	scheduler->remove(request);
+
+	// Checa para ver se é um jump
+	if(request->GetOperation() == DiskAccessRequest::JUMP){
+		// Caso seja um Jump para track 0, deve-se atualizar
+		// as prioridades das requisições na fila
+		if(request->GetDiskSector()->track == 0){
+			scheduler->reschedule();
+		}
+
+		// Jumps devem ter sua prioridade ajustada e devem ser adicionados denovo
+		// na lista [fazendo a lista se reordenar]
+		request->SetPriority(request->GetDiskSector()->track+maxTracks);
+		scheduler->insert(request);
+	}else{
+		delete request;
+	}
+
+    // Pega a proxima requisição do escalonador e a executa
 	request = scheduler->choose();
-	this->accessBlock(request);
+    if(request != nullptr)
+	    hd->accessBlock(request);
 }
 
 void HardDisk::flush() {
@@ -68,12 +114,19 @@ void HardDisk::setBlockSize(const unsigned int blocksize) {
 }
 
 void HardDisk::accessBlock(DiskAccessRequest* request) {
-    if (request->GetOperation() == DiskAccessRequest::READ) {
+	switch(request->GetOperation()){
+	case DiskAccessRequest::READ:
         readBlock(request);
-    } else {
+		break;
+	case DiskAccessRequest::WRITE:
         writeBlock(request);
-    }
-        
+		break;
+	case DiskAccessRequest::JUMP:
+    	jumpToBlock(request);
+		break;
+	default:
+		break;
+	}
 }
 
 unsigned int HardDisk::getBlockSize() {
@@ -86,4 +139,33 @@ void HardDisk::setMaxBlocks(const HW_HardDisk::blockNumber maxBlocks) {
 
 HW_HardDisk::blockNumber HardDisk::getMaxBlocks() {
     return _maxBlocks;
+}
+
+void HardDisk::jumpToBlock(DiskAccessRequest* request){
+	HW_HardDisk* hd = HW_Machine::HardDisk();
+	HW_HardDisk::DiskSector* sector = request->GetDiskSector();
+	//TODO rever esta conta
+	hd->setDataRegister(sector->surface + sector->track + sector->sector);
+	hd->setCommandRegister(HW_HardDisk::JUMP_TO_LOGICALSECTOR);
+}
+
+unsigned int HardDisk::getHeadPosition(){
+    HW_HardDisk* hd = HW_Machine::HardDisk();
+    hd->setCommandRegister(HW_HardDisk::GET_HEADTRACKPOSITION);
+    return hd->getDataRegister();
+}
+
+unsigned int HardDisk::getTracksPerSurface(){
+	return _tracksPerSurface;
+}
+
+void DiskAccessRequest::UpdatePriority(){
+	HardDisk *hd = OperatingSystem::HardDisk_Mediator();
+	unsigned int headPos = hd->getHeadPosition();
+	unsigned int maxTracks = hd->getTracksPerSurface();
+	unsigned int track = this->_diskSector->track;
+
+	this->_priority = track + maxTracks;
+	if(track >= headPos)//req.track esta a frente da head?
+		this->_priority /= 2;//então aumenta a prioridade dela
 }

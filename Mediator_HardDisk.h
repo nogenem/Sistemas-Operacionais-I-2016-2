@@ -18,13 +18,14 @@
 
 class DiskAccessRequest {
 public:
-    enum Operation {READ, WRITE};
+    enum Operation {READ, WRITE, JUMP};
 public:
      DiskAccessRequest(Operation operation,HW_HardDisk::blockNumber blockNumber, HW_HardDisk::DiskSector* diskSector) {
          _operation = operation;
          _blockNumber = blockNumber;
          _diskSector = diskSector;
          _priority = 0;
+         this->UpdatePriority();
      }
 
      HW_HardDisk::DiskSector* GetDiskSector() const {
@@ -46,6 +47,9 @@ public:
      int GetPriority() const {
          return _priority;
      }
+
+     //TODO testar, documentar
+     void UpdatePriority();
 private:
     Operation _operation;
     HW_HardDisk::blockNumber _blockNumber;
@@ -89,10 +93,17 @@ public:
      */
     HW_HardDisk::blockNumber getMaxBlocks();
 
+    //TODO: testar, documentar
+    void jumpToBlock(DiskAccessRequest* request);
+    unsigned int getHeadPosition();
+    unsigned int getTracksPerSurface();
 
 private:
     unsigned int _instance;
     unsigned int _blocksize;  // should be equal to the HD sector size for simplicity
+
+    //XXX: adicionado por mim
+    unsigned int _tracksPerSurface;
     HW_HardDisk::blockNumber _maxBlocks;
 private:
     static void interrupt_handler();

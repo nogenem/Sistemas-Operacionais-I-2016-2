@@ -82,15 +82,15 @@ void OperatingSystem::ExecuteTestCode() {
 
     // Adicionar requisicoes de escrita/leitura ao escalonador de disco
 	//TODO rever isso
-	diskSector = new HW_HardDisk::DiskSector{0,0,550,1};
+	diskSector = new HW_HardDisk::DiskSector{{},0,550,1};
 	request = new DiskAccessRequest(DiskAccessRequest::WRITE,1,diskSector);
 	scheduler->insert(request);
 
-	diskSector = new HW_HardDisk::DiskSector{23,0,50,1};
+	diskSector = new HW_HardDisk::DiskSector{{1,0,1,0},0,50,1};
 	request = new DiskAccessRequest(DiskAccessRequest::WRITE,1,diskSector);
 	scheduler->insert(request);
 
-	diskSector = new HW_HardDisk::DiskSector{0,0,550,1};
+	diskSector = new HW_HardDisk::DiskSector{{},0,550,1};
 	request = new DiskAccessRequest(DiskAccessRequest::READ,1,diskSector);
 	scheduler->insert(request);
 

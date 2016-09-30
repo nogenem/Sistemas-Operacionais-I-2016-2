@@ -38,7 +38,7 @@ public:
         // CHANGE AS NECESSARY IF YOU CHOOSE ANOTHER QUEUE
         _queue->insert(_queue->begin(), t);
         _queue->sort([] (const T* a, const T * b) {
-            return a->getPriority() <= b->getPriority();
+            return a->GetPriority() <= b->GetPriority();
         });
     }
 

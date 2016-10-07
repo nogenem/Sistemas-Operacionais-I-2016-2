@@ -57,11 +57,16 @@ public:
         return _choosen;
     }
 
+    /**
+     * Atualiza a prioridade das requisições na lista do Escalonador
+     */
     void reschedule() {
         Debug::cout(Debug::Level::trace, "Scheduler::reschedule()");
         if (!this->_readyQueue->empty()) {
             // INSERT YOUR CODE HERE
             // ...
+
+        	//TODO chamar a função de ordenação?
 
         	// Atualiza a prioridade das requisições
         	DiskAccessRequest *tmp = nullptr;

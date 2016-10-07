@@ -48,7 +48,11 @@ public:
          return _priority;
      }
 
-     //TODO testar, documentar
+     /**
+      * Atualiza a prioridade desta requisição com base na seguinte formula:
+      * 	prioridade = req.track + tracksPerSurface;
+      * 	if(req.track >= diskHeadPos){ prioridade /= 2; }
+      */
      void UpdatePriority();
 private:
     Operation _operation;
@@ -67,11 +71,26 @@ public:
 public:
     void flush();
 
+    /**
+	 * Comanda o HD para executar uma Escrita ao bloco passado
+	 * no @param request
+	 * @param request Uma requisição com as informações necessarias
+	 */
     void writeBlock(DiskAccessRequest* request);
     
+    /**
+	 * Comanda o HD para executar uma Leitura ao bloco passado
+	 * no @param request
+	 * @param request Uma requisição com as informações necessarias
+	 */
     void readBlock(DiskAccessRequest* request);
     
-    void accessBlock(DiskAccessRequest* request); // more generic than read or write. Invoke read or write inside it
+    /**
+	 * Chamada genérica que analisa a @param request para verificar que
+	 * tipo de requisição é, e chamar o método adequado para trata-la
+	 * @param request Uma requisição com as informações necessarias
+	 */
+    void accessBlock(DiskAccessRequest* request); // more generic than read, write or jump. Invoke read, write or jump inside it
 
     void setBlockSize(const unsigned int blocksize);
 
@@ -94,18 +113,37 @@ public:
     HW_HardDisk::blockNumber getMaxBlocks();
 
     //TODO: testar, documentar
+    /**
+     * Comanda o HD para executar um Jump ao bloco passado
+     * no @param request
+     * @param request Uma requisição com as informações necessarias
+     */
     void jumpToBlock(DiskAccessRequest* request);
+
+    /**
+     * Retorna a posição da 'head' do disco
+     * @return A posição da 'head' do disco
+     */
     unsigned int getHeadPosition();
+
+    /**
+     * Retorna o numero de trilhas por superficie do disco
+     * @return O numero de trilhas por superficie do disco
+     */
     unsigned int getTracksPerSurface();
 
 private:
     unsigned int _instance;
     unsigned int _blocksize;  // should be equal to the HD sector size for simplicity
-
-    //XXX: adicionado por mim
     unsigned int _tracksPerSurface;
     HW_HardDisk::blockNumber _maxBlocks;
 private:
+    /**
+     * Trata a interrupção gerada pelo disco.
+     * Deve-se remover a ultima requisição atendida da lista do
+     * Escalonador, pedir ao Escalanador para escolher a próxima
+     * requisição e, caso haja uma, deve-se executa-la.
+     */
     static void interrupt_handler();
 };
 

@@ -1,3 +1,7 @@
+build/
+dist/
+oldies/
+
 #CODE
 .settings/
 .vscode/

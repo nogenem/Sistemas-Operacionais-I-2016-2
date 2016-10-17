@@ -21,11 +21,11 @@ public:
     enum Operation {READ, WRITE, JUMP};
 public:
      DiskAccessRequest(Operation operation,HW_HardDisk::blockNumber blockNumber, HW_HardDisk::DiskSector* diskSector) {
-         _operation = operation;
-         _blockNumber = blockNumber;
-         _diskSector = diskSector;
-         _priority = 0;
-         this->UpdatePriority();
+    	 _operation = operation;
+		  _blockNumber = blockNumber;
+		  _diskSector = diskSector;
+		  _priority = 0;
+		  this->UpdatePriority();
      }
 
      HW_HardDisk::DiskSector* GetDiskSector() const {
@@ -44,16 +44,16 @@ public:
          this->_priority = _priority;
      }
 
-     int GetPriority() const {
+     int getPriority() const {
          return _priority;
      }
 
      /**
-      * Atualiza a prioridade desta requisição com base na seguinte formula:
-      * 	prioridade = req.track + tracksPerSurface;
-      * 	if(req.track >= diskHeadPos){ prioridade /= 2; }
-      */
-     void UpdatePriority();
+	   * Atualiza a prioridade desta requisição com base na seguinte formula:
+	   * 	prioridade = req.track + tracksPerSurface;
+	   * 	if(req.track >= diskHeadPos){ prioridade /= 2; }
+	   */
+	  void UpdatePriority();
 private:
     Operation _operation;
     HW_HardDisk::blockNumber _blockNumber;
@@ -90,7 +90,7 @@ public:
 	 * tipo de requisição é, e chamar o método adequado para trata-la
 	 * @param request Uma requisição com as informações necessarias
 	 */
-    void accessBlock(DiskAccessRequest* request); // more generic than read, write or jump. Invoke read, write or jump inside it
+    void accessBlock(DiskAccessRequest* request); // more generic than read or write. Invoke read or write inside it
 
     void setBlockSize(const unsigned int blocksize);
 
@@ -112,26 +112,24 @@ public:
      */
     HW_HardDisk::blockNumber getMaxBlocks();
 
-    //TODO: testar, documentar
     /**
-     * Comanda o HD para executar um Jump ao bloco passado
-     * no @param request
-     * @param request Uma requisição com as informações necessarias
-     */
-    void jumpToBlock(DiskAccessRequest* request);
+	 * Comanda o HD para executar um Jump ao bloco passado
+	 * no @param request
+	 * @param request Uma requisição com as informações necessarias
+	 */
+	void jumpToBlock(DiskAccessRequest* request);
 
-    /**
-     * Retorna a posição da 'head' do disco
-     * @return A posição da 'head' do disco
-     */
-    unsigned int getHeadPosition();
+	/**
+	 * Retorna a posição da 'head' do disco
+	 * @return A posição da 'head' do disco
+	 */
+	unsigned int getHeadPosition();
 
-    /**
-     * Retorna o numero de trilhas por superficie do disco
-     * @return O numero de trilhas por superficie do disco
-     */
-    unsigned int getTracksPerSurface();
-
+	/**
+	 * Retorna o numero de trilhas por superficie do disco
+	 * @return O numero de trilhas por superficie do disco
+	 */
+	unsigned int getTracksPerSurface();
 private:
     unsigned int _instance;
     unsigned int _blocksize;  // should be equal to the HD sector size for simplicity
@@ -139,11 +137,11 @@ private:
     HW_HardDisk::blockNumber _maxBlocks;
 private:
     /**
-     * Trata a interrupção gerada pelo disco.
-     * Deve-se remover a ultima requisição atendida da lista do
-     * Escalonador, pedir ao Escalanador para escolher a próxima
-     * requisição e, caso haja uma, deve-se executa-la.
-     */
+	 * Trata a interrupção gerada pelo disco.
+	 * Deve-se remover a ultima requisição atendida da lista do
+	 * Escalonador, pedir ao Escalanador para escolher a próxima
+	 * requisição e, caso haja uma, deve-se executa-la.
+	 */
     static void interrupt_handler();
 };
 

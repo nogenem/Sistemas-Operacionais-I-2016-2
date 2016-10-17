@@ -8,7 +8,6 @@
 #ifndef SCHEDULING_QUEUE_H
 #define SCHEDULING_QUEUE_H
 
-#include <queue>
 #include <list>
 
 template <typename T>
@@ -38,7 +37,7 @@ public:
         // CHANGE AS NECESSARY IF YOU CHOOSE ANOTHER QUEUE
         _queue->insert(_queue->begin(), t);
         _queue->sort([] (const T* a, const T * b) {
-            return a->GetPriority() <= b->GetPriority();
+            return a->getPriority() <= b->getPriority();
         });
     }
 
@@ -58,6 +57,22 @@ public:
         // CHANGE AS NECESSARY IF YOU CHOOSE ANOTHER QUEUE
         return (*_queue->begin());
     }
+
+    typename std::list<T*>::iterator begin() {
+		return _queue->begin();
+	}
+
+    typename std::list<T*>::const_iterator begin() const {
+    	return _queue->begin();
+    }
+
+    typename std::list<T*>::iterator end() {
+		return _queue->end();
+	}
+
+    typename std::list<T*>::const_iterator end() const {
+		return _queue->end();
+	}
 
 private:
     // INSERT YOUR CODE HERE

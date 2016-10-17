@@ -24,8 +24,6 @@
 
 #include "ModuleInvoke_HardwareEvent.h"
 
-#include <string>
-
 class OperatingSystem {
 private:
 

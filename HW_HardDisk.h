@@ -53,7 +53,7 @@ public:
     void setDataRegister(unsigned int _dataRegister);
     unsigned int getDataRegister() const;
     void setStreamRegister(DiskSectorData _streamRegister);
-    DiskSectorData* getStreamRegister() const;
+    DiskSectorData* getStreamRegister();
 private:
     DiskSectorData _streamRegister;
     unsigned int _dataRegister;

@@ -23,12 +23,10 @@
 HW_HardDisk::HW_HardDisk() {
     _hardDisk = new std::list<DiskSector*>();
     _headTrackPosition = 0;
-    _statusRegister = 0;
-    _dataRegister = 0;
-    _commandRegister = 0;
 }
 
-HW_HardDisk::HW_HardDisk(const HW_HardDisk& orig) {}
+HW_HardDisk::HW_HardDisk(const HW_HardDisk& orig) {
+}
 
 void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
     this->_commandRegister = _commandRegister;
@@ -82,6 +80,8 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
             entity->getAttribute("MethodName")->setValue("HardDisk::interruptHandler()");
             instantMovementFinished = simulator->getTnow() + headMovement * Traits<HW_HardDisk>::sectorMovementTime;
             simulator->insertEvent(instantMovementFinished, HW_Machine::Module_HardwareEvent(), entity);
+
+            std::cout << "READ_LOGICALSECTOR EVENT!\n";//TODO REMOVER ISSO
             break;
         case WRITE_LOGICALSECTOR:
             for (std::list<DiskSector*>::iterator it = _hardDisk->begin(); it != _hardDisk->end(); it++) {
@@ -113,14 +113,14 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
             simulator->insertEvent(instantMovementFinished, HW_Machine::Module_HardwareEvent(), entity);
             break;
         case JUMP_TO_LOGICALSECTOR://Apenas se move até a track passada
-        	_headTrackPosition = track;
-        	// schedule an event to notify it's ready
-        	simulator = Simulator::getInstance();
+			_headTrackPosition = track;
+			// schedule an event to notify it's ready
+			simulator = Simulator::getInstance();
 			entity = simulator->getEntity();
 			entity->getAttribute("MethodName")->setValue("HardDisk::interruptHandler()");
 			instantMovementFinished = simulator->getTnow() + headMovement * Traits<HW_HardDisk>::sectorMovementTime;
 			simulator->insertEvent(instantMovementFinished, HW_Machine::Module_HardwareEvent(), entity);
-        	break;
+			break;
         default:
             // never should happen
             break;
@@ -145,7 +145,7 @@ void HW_HardDisk::setStreamRegister(DiskSectorData _streamRegister) {
     }
 }
 
-HW_HardDisk::DiskSectorData* HW_HardDisk::getStreamRegister() const {
+HW_HardDisk::DiskSectorData* HW_HardDisk::getStreamRegister() {
     return &_streamRegister;
 
 }

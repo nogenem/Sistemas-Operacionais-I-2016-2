@@ -31,9 +31,10 @@ using namespace std;
 int main(int argc, char** argv) {
     int test = -1;
 
-    struct pollfd fds;
+    //TODO descomentar isso!
+    /*struct pollfd fds;
     int ret;
-    fds.fd = 0; /* this is STDIN */
+    fds.fd = 0; // this is STDIN
     fds.events = POLLIN;
     ret = poll(&fds, 1, 0);
     if (ret == 1) {
@@ -41,7 +42,7 @@ int main(int argc, char** argv) {
         //    std::cout << "Test " << test << " selected\n";
         //} else {
         //    std::cout << "Normal execution selected\n";
-    }
+    }*/
 
     ModelBuilder* builder = new ProblemSolving20162ModelBuilder(); //ProblemSolving5ModelBuilder(); 
 

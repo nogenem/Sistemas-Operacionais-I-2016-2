@@ -14,6 +14,7 @@
 
 #include "Util_Scheduling_Queue.h"
 #include "Simul_Debug.h"
+#include "Mediator_HardDisk.h"
 
 template <typename T>
 class Scheduler {
@@ -58,8 +59,8 @@ public:
     }
 
     /**
-     * Atualiza a prioridade das requisições na lista do Escalonador
-     */
+	 * Atualiza a prioridade das requisições na lista do Escalonador
+	 */
     void reschedule() {
         Debug::cout(Debug::Level::trace, "Scheduler::reschedule()");
         if (!this->_readyQueue->empty()) {
@@ -68,13 +69,13 @@ public:
 
         	//TODO chamar a função de ordenação?
 
-        	// Atualiza a prioridade das requisições
-        	DiskAccessRequest *tmp = nullptr;
-        	for(T* request : this->_readyQueue){
-        		tmp = (DiskAccessRequest*)request;
-        		if(tmp != nullptr)
-        			tmp->UpdatePriority();
-        	}
+			// Atualiza a prioridade das requisições
+			DiskAccessRequest *tmp = nullptr;
+			for(auto it = this->_readyQueue->begin(); it != this->_readyQueue->end(); ++it){
+				tmp = (DiskAccessRequest*)(*it);
+				if(tmp != nullptr)
+					tmp->UpdatePriority();
+			}
         }
     }
 
@@ -85,7 +86,6 @@ public:
     T * remove(T * schedulingItem) {
         // remove a specific schedulingItem from the readyQueue
         this->_readyQueue->remove(schedulingItem);
-        return schedulingItem;
     }
 
 };

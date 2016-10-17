@@ -12,37 +12,18 @@
  */
 
 #include "Mediator_HardDisk.h"
-
-#include "Abstr_Scheduler.h"
 #include "HW_Machine.h"
 #include "OperatingSystem.h"
 
 HardDisk::HardDisk(unsigned int instance) {
-    _instance = instance;
+	_instance = instance;
     HW_HardDisk* hd = HW_Machine::HardDisk();
     hd->setCommandRegister(HW_HardDisk::GET_SECTORSIZE);
     _blocksize = hd->getDataRegister();
     hd->setCommandRegister(HW_HardDisk::GET_TOTALSECTORS);
     _maxBlocks = hd->getDataRegister();
     hd->setCommandRegister(HW_HardDisk::GET_TRACKSPERSURFACE);
-    _tracksPerSurface = hd->getDataRegister();
-
-    // Adiciona os 2 jumps para fazer o disco sempre ir até as bordas
-    Scheduler<DiskAccessRequest>* scheduler = OperatingSystem::Disk_Scheduler();
-	HW_HardDisk::DiskSector* diskSector;
-	DiskAccessRequest *request;
-
-	// Request para jump no track 0
-	diskSector = new HW_HardDisk::DiskSector{{},0,0,0};
-	request = new DiskAccessRequest(DiskAccessRequest::JUMP,0,diskSector);
-	request->SetPriority(_tracksPerSurface);
-	scheduler->insert(request);
-
-	// Request para jump no track maxTracks-1
-	diskSector = new HW_HardDisk::DiskSector{{},0,_tracksPerSurface-1,0};
-	request = new DiskAccessRequest(DiskAccessRequest::JUMP,0,diskSector);
-	request->SetPriority(_tracksPerSurface-1);
-	scheduler->insert(request);
+	_tracksPerSurface = hd->getDataRegister();
 }
 
 HardDisk::HardDisk(const HardDisk& orig) {
@@ -51,11 +32,10 @@ HardDisk::HardDisk(const HardDisk& orig) {
 HardDisk::~HardDisk() {
 }
 
-//TODO testar, documentar
 void HardDisk::interrupt_handler() {     // Hard Disk Interrupt Handler
     // INSERT YOUR CODE HERE
     // ...
-
+    
 	HardDisk *hd = OperatingSystem::HardDisk_Mediator();
 	Scheduler<DiskAccessRequest>* scheduler = OperatingSystem::Disk_Scheduler();
 	DiskAccessRequest *request;
@@ -78,13 +58,16 @@ void HardDisk::interrupt_handler() {     // Hard Disk Interrupt Handler
 		request->SetPriority(request->GetDiskSector()->track+maxTracks);
 		scheduler->insert(request);
 	}else{
+		// Se não for um Jump apenas delete a requisição
 		delete request;
 	}
 
-    // Pega a proxima requisição do escalonador e a executa
+	// Pega a proxima requisição do escalonador e a executa
 	request = scheduler->choose();
-    if(request != nullptr)
-	    hd->accessBlock(request);
+	std::cout << request->getPriority() << "\n";
+
+	if(request != nullptr)
+		hd->accessBlock(request);
 }
 
 void HardDisk::flush() {
@@ -105,8 +88,8 @@ void HardDisk::readBlock(DiskAccessRequest* request) {
 	HW_HardDisk* hd = HW_Machine::HardDisk();
 	HW_HardDisk::DiskSector* sector = request->GetDiskSector();
 	//TODO rever esta conta
-    hd->setDataRegister(sector->surface + sector->track + sector->sector);
-    hd->setCommandRegister(HW_HardDisk::READ_LOGICALSECTOR);
+	hd->setDataRegister(sector->surface + sector->track + sector->sector);
+	hd->setCommandRegister(HW_HardDisk::READ_LOGICALSECTOR);
 }
 
 void HardDisk::setBlockSize(const unsigned int blocksize) {
@@ -116,21 +99,23 @@ void HardDisk::setBlockSize(const unsigned int blocksize) {
 void HardDisk::accessBlock(DiskAccessRequest* request) {
 	switch(request->GetOperation()){
 	case DiskAccessRequest::READ:
-        readBlock(request);
+		readBlock(request);
 		break;
 	case DiskAccessRequest::WRITE:
-        writeBlock(request);
+		writeBlock(request);
 		break;
 	case DiskAccessRequest::JUMP:
-    	jumpToBlock(request);
+		jumpToBlock(request);
 		break;
 	default:
 		break;
 	}
+
+	std::cout << "HardDisk::accessBlock(" << request << ")\n";
 }
 
 unsigned int HardDisk::getBlockSize() {
-    return _blocksize;
+	return _blocksize;
 }
 
 void HardDisk::setMaxBlocks(const HW_HardDisk::blockNumber maxBlocks) {
@@ -138,7 +123,7 @@ void HardDisk::setMaxBlocks(const HW_HardDisk::blockNumber maxBlocks) {
 }
 
 HW_HardDisk::blockNumber HardDisk::getMaxBlocks() {
-    return _maxBlocks;
+	return _maxBlocks;
 }
 
 void HardDisk::jumpToBlock(DiskAccessRequest* request){

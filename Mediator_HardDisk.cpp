@@ -14,9 +14,10 @@
 #include "Mediator_HardDisk.h"
 #include "HW_Machine.h"
 #include "OperatingSystem.h"
+#include <math.h>
 
 HardDisk::HardDisk(unsigned int instance) {
-	_instance = instance;
+    _instance = instance;
     HW_HardDisk* hd = HW_Machine::HardDisk();
     hd->setCommandRegister(HW_HardDisk::GET_SECTORSIZE);
     _blocksize = hd->getDataRegister();
@@ -55,7 +56,7 @@ void HardDisk::interrupt_handler() {     // Hard Disk Interrupt Handler
 
 		// Jumps devem ter sua prioridade ajustada e devem ser adicionados denovo
 		// na lista [fazendo a lista se reordenar]
-		request->SetPriority(request->GetDiskSector()->track+maxTracks);
+		request->UpdatePriority();//TODO REVER ISSO!
 		scheduler->insert(request);
 	}else{
 		// Se não for um Jump apenas delete a requisição
@@ -64,7 +65,6 @@ void HardDisk::interrupt_handler() {     // Hard Disk Interrupt Handler
 
 	// Pega a proxima requisição do escalonador e a executa
 	request = scheduler->choose();
-	std::cout << request->getPriority() << "\n";
 
 	if(request != nullptr)
 		hd->accessBlock(request);
@@ -97,6 +97,11 @@ void HardDisk::setBlockSize(const unsigned int blocksize) {
 }
 
 void HardDisk::accessBlock(DiskAccessRequest* request) {
+	//TODO REMOVER ISSO!
+	std::cout << "Request: op=" << request->GetOperation() <<
+			"; pri=" << request->getPriority() <<
+			"; tr=" << request->GetDiskSector()->track << "\n\n";
+
 	switch(request->GetOperation()){
 	case DiskAccessRequest::READ:
 		readBlock(request);
@@ -110,8 +115,6 @@ void HardDisk::accessBlock(DiskAccessRequest* request) {
 	default:
 		break;
 	}
-
-	std::cout << "HardDisk::accessBlock(" << request << ")\n";
 }
 
 unsigned int HardDisk::getBlockSize() {
@@ -150,7 +153,8 @@ void DiskAccessRequest::UpdatePriority(){
 	unsigned int maxTracks = hd->getTracksPerSurface();
 	unsigned int track = this->_diskSector->track;
 
-	this->_priority = track + maxTracks;
-	if(track >= headPos)//req.track esta a frente da head?
-		this->_priority /= 2;//então aumenta a prioridade dela
+	if(track > headPos)//req.track esta a frente da head?
+		this->_priority = ceil(maxTracks / 2.0) + track;//então ela tem prioridade maior
+	else
+		this->_priority = 2.0 * maxTracks + track;
 }

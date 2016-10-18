@@ -21,11 +21,11 @@ public:
     enum Operation {READ, WRITE, JUMP};
 public:
      DiskAccessRequest(Operation operation,HW_HardDisk::blockNumber blockNumber, HW_HardDisk::DiskSector* diskSector) {
-    	 _operation = operation;
-		  _blockNumber = blockNumber;
-		  _diskSector = diskSector;
-		  _priority = 0;
-		  this->UpdatePriority();
+         _operation = operation;
+         _blockNumber = blockNumber;
+         _diskSector = diskSector;
+         _priority = 0;
+         this->UpdatePriority();
      }
 
      HW_HardDisk::DiskSector* GetDiskSector() const {
@@ -53,7 +53,7 @@ public:
 	   * 	prioridade = req.track + tracksPerSurface;
 	   * 	if(req.track >= diskHeadPos){ prioridade /= 2; }
 	   */
-	  void UpdatePriority();
+	 void UpdatePriority();
 private:
     Operation _operation;
     HW_HardDisk::blockNumber _blockNumber;

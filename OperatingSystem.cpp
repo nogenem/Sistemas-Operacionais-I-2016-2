@@ -35,17 +35,11 @@ void OperatingSystem::Init() {
     Debug::cout(Debug::Level::trace, "OperatingSystem::init()");
     HW_Machine::Init();
     
-    //TODO retirar msg
     OperatingSystem::CPU_Mediator();
-    Debug::cout(Debug::Level::trace, "OperatingSystem::CPU_Mediator()");
     OperatingSystem::DMA_Mediator();
-    Debug::cout(Debug::Level::trace, "OperatingSystem::DMA_Mediator()");
     OperatingSystem::HardDisk_Mediator();
-    Debug::cout(Debug::Level::trace, "OperatingSystem::HardDisk_Mediator()");
     OperatingSystem::MMU_Mediator();
-    Debug::cout(Debug::Level::trace, "OperatingSystem::MMU_Mediator()");
     OperatingSystem::Timer_Mediator();
-    Debug::cout(Debug::Level::trace, "OperatingSystem::Timer_Mediator()");
     
     SetBootApplication(Application::DefaultBootApplication());  // load boot application into RAMs
 }
@@ -63,48 +57,44 @@ void OperatingSystem::ExecuteTestCode() {
     // You can write a test code that will be executed and will invoke system calls or whenever you want
     // Follow the examples...
     // ...
+    
+    Scheduler<DiskAccessRequest>* scheduler;
+	HW_HardDisk::DiskSector* diskSector;
+	DiskAccessRequest *request;
+	HardDisk* hd_mediator;
 
     switch (executionStep) {
-        case 0:{  // ExecutionStep is initialized with 0
-            entity->getAttribute("ExecutionStep")->setValue(std::to_string(executionStep++)); // advance execution step
-            simulator->insertEvent(timeNow + 10.0, module, entity); // future event when execution will advance
-
+        case 0:  // ExecutionStep is initialized with 0
+            entity->getAttribute("ExecutionStep")->setValue(std::to_string(++executionStep)); // advance execution step
+            simulator->insertEvent(timeNow + 10.0, module, entity); // future event when execution will advance 
 
             //TODO Rever isso...
-
-            //TODO REMOVER ISSO
-            std::cout << "Inicializando requisicoes de disco...\n";
-
 			// Adiciona os 2 jumps para fazer o disco sempre ir até as bordas
-			Scheduler<DiskAccessRequest>* scheduler = OperatingSystem::Disk_Scheduler();
-			HW_HardDisk::DiskSector* diskSector;
-			DiskAccessRequest *request;
-			HardDisk* hd_mediator = OperatingSystem::HardDisk_Mediator();
+			scheduler = OperatingSystem::Disk_Scheduler();
+			hd_mediator = OperatingSystem::HardDisk_Mediator();
 
 			// Request para jump no track 0
 			diskSector = new HW_HardDisk::DiskSector{{},0,0,0};
 			request = new DiskAccessRequest(DiskAccessRequest::JUMP, 0, diskSector);
-			request->SetPriority(hd_mediator->getTracksPerSurface());
 			scheduler->insert(request);
 
 			// Request para jump no track maxTracks-1
 			diskSector = new HW_HardDisk::DiskSector{{},0,hd_mediator->getTracksPerSurface()-1,0};
 			request = new DiskAccessRequest(DiskAccessRequest::JUMP,0,diskSector);
-			request->SetPriority(hd_mediator->getTracksPerSurface()-1);
 			scheduler->insert(request);
 
 			// Testes
 
 			// Adicionar requisicoes de escrita/leitura ao escalonador de disco
-			diskSector = new HW_HardDisk::DiskSector{{},0,550,1};
+			diskSector = new HW_HardDisk::DiskSector{{0,0,0,0},0,5,1};
 			request = new DiskAccessRequest(DiskAccessRequest::WRITE,1,diskSector);
 			scheduler->insert(request);
 
-			diskSector = new HW_HardDisk::DiskSector{{1,0,1,0},0,50,1};
+			diskSector = new HW_HardDisk::DiskSector{{1,0,1,0},0,2,1};
 			request = new DiskAccessRequest(DiskAccessRequest::WRITE,1,diskSector);
 			scheduler->insert(request);
 
-			diskSector = new HW_HardDisk::DiskSector{{},0,550,1};
+			diskSector = new HW_HardDisk::DiskSector{{},0,3,1};
 			request = new DiskAccessRequest(DiskAccessRequest::READ,1,diskSector);
 			scheduler->insert(request);
 
@@ -113,19 +103,41 @@ void OperatingSystem::ExecuteTestCode() {
 
 			// Chamar o Mediator_HardDisk passando esta primeira requisicao
 			hd_mediator->accessBlock(request);
-
             break;
-        }case 1:
-            entity->getAttribute("ExecutionStep")->setValue(std::to_string(executionStep++)); // advance execution step
+        case 1:
+        	entity->getAttribute("ExecutionStep")->setValue(std::to_string(++executionStep)); // advance execution step
+
+			scheduler = OperatingSystem::Disk_Scheduler();
+			hd_mediator = OperatingSystem::HardDisk_Mediator();
+
+			// Adicionar requisicoes de escrita/leitura ao escalonador de disco
+			diskSector = new HW_HardDisk::DiskSector{{0,0,0,0},0,1,1};
+			request = new DiskAccessRequest(DiskAccessRequest::WRITE,1,diskSector);
+			scheduler->insert(request);
             break;
         case 2:
-            entity->getAttribute("ExecutionStep")->setValue(std::to_string(executionStep++)); // advance execution step
+            entity->getAttribute("ExecutionStep")->setValue(std::to_string(++executionStep)); // advance execution step
             break;
         case 3:
-            entity->getAttribute("ExecutionStep")->setValue(std::to_string(executionStep++)); // advance execution step
+            entity->getAttribute("ExecutionStep")->setValue(std::to_string(++executionStep)); // advance execution step
             break;
+        case 10:
+        	entity->getAttribute("ExecutionStep")->setValue(std::to_string(++executionStep)); // advance execution step
+
+			scheduler = OperatingSystem::Disk_Scheduler();
+			hd_mediator = OperatingSystem::HardDisk_Mediator();
+
+			// Adicionar requisicoes de escrita/leitura ao escalonador de disco
+			diskSector = new HW_HardDisk::DiskSector{{0,0,0,0},0,11,1};
+			request = new DiskAccessRequest(DiskAccessRequest::WRITE,1,diskSector);
+			scheduler->insert(request);
+
+			diskSector = new HW_HardDisk::DiskSector{{0,0,0,0},0,10,1};
+			request = new DiskAccessRequest(DiskAccessRequest::WRITE,1,diskSector);
+			scheduler->insert(request);
+			break;
         default:
-            entity->getAttribute("ExecutionStep")->setValue(std::to_string(executionStep++)); // advance execution step
+            entity->getAttribute("ExecutionStep")->setValue(std::to_string(++executionStep)); // advance execution step
             break;
     }
     

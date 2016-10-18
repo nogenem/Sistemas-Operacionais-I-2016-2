@@ -34,4 +34,5 @@ void Timer::interrupt_handler() {
     Debug::cout(Debug::Level::trace, "TimerMediator::interrupt_handler()");
     // INSERT YOUR CODE HERE
     // ...
+
 }

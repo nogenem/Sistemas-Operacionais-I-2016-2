@@ -141,7 +141,7 @@ template<> struct Traits<HW_HardDisk> {
     static constexpr unsigned int numSurfaces = 1;
     static constexpr unsigned int numTracksPerSurface = 1000;
     static constexpr unsigned int numSectorsPerTrack = 2;
-    static constexpr double sectorMovementTime = 10;  // time units to move head from one sector to another adjacent one
+    static constexpr double sectorMovementTime = 0.1;  // time units to move head from one sector to another adjacent one
 };
 
 

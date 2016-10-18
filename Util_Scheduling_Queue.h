@@ -8,6 +8,7 @@
 #ifndef SCHEDULING_QUEUE_H
 #define SCHEDULING_QUEUE_H
 
+#include <queue>
 #include <list>
 
 template <typename T>
@@ -62,15 +63,15 @@ public:
 		return _queue->begin();
 	}
 
-    typename std::list<T*>::const_iterator begin() const {
-    	return _queue->begin();
-    }
+	typename std::list<T*>::const_iterator begin() const {
+		return _queue->begin();
+	}
 
-    typename std::list<T*>::iterator end() {
+	typename std::list<T*>::iterator end() {
 		return _queue->end();
 	}
 
-    typename std::list<T*>::const_iterator end() const {
+	typename std::list<T*>::const_iterator end() const {
 		return _queue->end();
 	}
 

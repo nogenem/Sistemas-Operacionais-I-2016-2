@@ -43,6 +43,13 @@ public:
         WRITE_LOGICALSECTOR   = 0x00000080,
 		JUMP_TO_LOGICALSECTOR = 0x00000100
     };
+
+    struct AccountInformation {
+    	unsigned int _totalHeadMov;//Quantidade total de movimentos do cabeçote
+    	unsigned int _totalReadSectors;//Quantidade total de setores lidos
+    	unsigned int _totalWrittenSectors;//Quantidade total de setores escritos
+    };
+
 public:
     HW_HardDisk();
 
@@ -54,11 +61,46 @@ public:
     unsigned int getDataRegister() const;
     void setStreamRegister(DiskSectorData _streamRegister);
     DiskSectorData* getStreamRegister();
+
+    //Estatisticas
+    /**
+     * Retorna o numero total de movimentos do cabeçote do disco
+     * @return O numero total de movimentos do cabeçote do disco
+     */
+    unsigned int getTotalHeadMoviment(){
+    	return _accountInfo._totalHeadMov;
+    }
+
+    /**
+     * Retorna o numero total de bytes lidos pelo disco
+     * @return O numero total de bytes lidos pelo disco
+     */
+    unsigned int getTotalBytesRead(){
+    	return _accountInfo._totalReadSectors * DISK_SECTOR_SIZE;
+    }
+
+    /**
+     * Retorna o numero total de bytes escritos no disco
+     * @return O numero total de bytes escritos no disco
+     */
+    unsigned int getTotalBytesWritten(){
+    	return _accountInfo._totalWrittenSectors * DISK_SECTOR_SIZE;
+    }
+
+    /**
+     * Retorna o numero total de bytes manipulados pelo disco, lidos e escritos
+     * @return O numero total de bytes manipulados pelo disco, lidos e escritos
+     */
+    unsigned int getTotalBytesHandled(){
+    	return getTotalBytesRead() + getTotalBytesWritten();
+    }
+
 private:
     DiskSectorData _streamRegister;
     unsigned int _dataRegister;
     unsigned int _commandRegister;
     unsigned int _statusRegister;
+    AccountInformation _accountInfo;
 private:
     std::list<DiskSector*> *_hardDisk;
     unsigned int _headTrackPosition;

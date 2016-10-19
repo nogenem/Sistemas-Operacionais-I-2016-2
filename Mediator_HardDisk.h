@@ -20,13 +20,8 @@ class DiskAccessRequest {
 public:
     enum Operation {READ, WRITE, JUMP};
 public:
-     DiskAccessRequest(Operation operation,HW_HardDisk::blockNumber blockNumber, HW_HardDisk::DiskSector* diskSector) {
-         _operation = operation;
-         _blockNumber = blockNumber;
-         _diskSector = diskSector;
-         _priority = 0;
-         this->UpdatePriority();
-     }
+     DiskAccessRequest(Operation operation,HW_HardDisk::blockNumber blockNumber,
+    		 HW_HardDisk::DiskSector* diskSector);
 
      HW_HardDisk::DiskSector* GetDiskSector() const {
          return _diskSector;
@@ -48,10 +43,13 @@ public:
          return _priority;
      }
 
+     double getArrivalTime() {
+    	 return _arrivalTime;
+     }
+
      /**
-	   * Atualiza a prioridade desta requisição com base na seguinte formula:
-	   * 	prioridade = req.track + tracksPerSurface;
-	   * 	if(req.track >= diskHeadPos){ prioridade /= 2; }
+	   * Atualiza a prioridade desta requisição com base na posição
+	   * atual do cabeçote do disco.
 	   */
 	 void UpdatePriority();
 private:
@@ -59,6 +57,8 @@ private:
     HW_HardDisk::blockNumber _blockNumber;
     HW_HardDisk::DiskSector* _diskSector;
     int _priority; // this attribute MUST BE the one used to sort the Schelung_Queue, no matter the scheduler algorithm
+
+    double _arrivalTime;//Tempo de chegada no sistema
 };
 
 class HardDisk {

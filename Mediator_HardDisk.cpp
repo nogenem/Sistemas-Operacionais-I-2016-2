@@ -14,6 +14,7 @@
 #include "Mediator_HardDisk.h"
 #include "HW_Machine.h"
 #include "OperatingSystem.h"
+#include "Simulator.h"
 #include <math.h>
 
 HardDisk::HardDisk(unsigned int instance) {
@@ -40,7 +41,6 @@ void HardDisk::interrupt_handler() {     // Hard Disk Interrupt Handler
 	HardDisk *hd = OperatingSystem::HardDisk_Mediator();
 	Scheduler<DiskAccessRequest>* scheduler = OperatingSystem::Disk_Scheduler();
 	DiskAccessRequest *request;
-	unsigned int maxTracks = hd->getTracksPerSurface();
 
 	// Remove a requisição que acabou de ser atendida
 	request = scheduler->choosen();
@@ -146,6 +146,17 @@ unsigned int HardDisk::getHeadPosition(){
 unsigned int HardDisk::getTracksPerSurface(){
 	return _tracksPerSurface;
 }
+
+DiskAccessRequest::DiskAccessRequest(Operation operation,
+		HW_HardDisk::blockNumber blockNumber, HW_HardDisk::DiskSector* diskSector) {
+	 _operation = operation;
+	 _blockNumber = blockNumber;
+	 _diskSector = diskSector;
+	 _priority = 0;
+	 _arrivalTime = Simulator::getInstance()->getTnow();
+
+	 this->UpdatePriority();
+ }
 
 void DiskAccessRequest::UpdatePriority(){
 	HardDisk *hd = OperatingSystem::HardDisk_Mediator();

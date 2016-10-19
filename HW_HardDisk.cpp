@@ -80,6 +80,10 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
             entity->getAttribute("MethodName")->setValue("HardDisk::interrupt_handler()");
             instantMovementFinished = simulator->getTnow() + headMovement * Traits<HW_HardDisk>::sectorMovementTime;
             simulator->insertEvent(instantMovementFinished, HW_Machine::Module_HardwareEvent(), entity);
+
+            this->_accountInfo._totalHeadMov += headMovement;
+            if(found)
+            	_accountInfo._totalReadSectors++;
             break;
         case WRITE_LOGICALSECTOR:
             for (std::list<DiskSector*>::iterator it = _hardDisk->begin(); it != _hardDisk->end(); it++) {
@@ -109,6 +113,9 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
             entity->getAttribute("MethodName")->setValue("HardDisk::interrupt_handler()");
             instantMovementFinished = simulator->getTnow() + headMovement * Traits<HW_HardDisk>::sectorMovementTime;
             simulator->insertEvent(instantMovementFinished, HW_Machine::Module_HardwareEvent(), entity);
+
+            this->_accountInfo._totalHeadMov += headMovement;
+            _accountInfo._totalReadSectors++;
             break;
         case JUMP_TO_LOGICALSECTOR://Apenas se move até a track passada
 			_headTrackPosition = track;
@@ -118,6 +125,8 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
 			entity->getAttribute("MethodName")->setValue("HardDisk::interrupt_handler()");
 			instantMovementFinished = simulator->getTnow() + headMovement * Traits<HW_HardDisk>::sectorMovementTime;
 			simulator->insertEvent(instantMovementFinished, HW_Machine::Module_HardwareEvent(), entity);
+
+			//TODO contar para o _totalHeadMov??
 			break;
         default:
             // never should happen

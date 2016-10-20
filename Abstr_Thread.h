@@ -83,6 +83,7 @@ public: //
     int join();
     Process* getProcess();
     int getPriority() const;
+    void updatePriority() {}
 protected:
     Process * _process;
     State _state;

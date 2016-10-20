@@ -51,7 +51,7 @@ public:
 	   * Atualiza a prioridade desta requisição com base na posição
 	   * atual do cabeçote do disco.
 	   */
-	 void UpdatePriority();
+	 void updatePriority();
 private:
     Operation _operation;
     HW_HardDisk::blockNumber _blockNumber;

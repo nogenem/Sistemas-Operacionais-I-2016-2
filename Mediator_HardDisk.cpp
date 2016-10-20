@@ -56,7 +56,7 @@ void HardDisk::interrupt_handler() {     // Hard Disk Interrupt Handler
 
 		// Jumps devem ter sua prioridade ajustada e devem ser adicionados denovo
 		// na lista [fazendo a lista se reordenar]
-		request->UpdatePriority();//TODO REVER ISSO!
+		request->updatePriority();//TODO REVER ISSO!
 		scheduler->insert(request);
 	}else{
 		// Se não for um Jump apenas delete a requisição
@@ -155,10 +155,10 @@ DiskAccessRequest::DiskAccessRequest(Operation operation,
 	 _priority = 0;
 	 _arrivalTime = Simulator::getInstance()->getTnow();
 
-	 this->UpdatePriority();
+	 this->updatePriority();
  }
 
-void DiskAccessRequest::UpdatePriority(){
+void DiskAccessRequest::updatePriority(){
 	HardDisk *hd = OperatingSystem::HardDisk_Mediator();
 	unsigned int headPos = hd->getHeadPosition();
 	unsigned int maxTracks = hd->getTracksPerSurface();

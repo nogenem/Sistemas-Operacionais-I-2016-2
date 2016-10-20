@@ -37,9 +37,7 @@ public:
     void insert(T* t) {
         // CHANGE AS NECESSARY IF YOU CHOOSE ANOTHER QUEUE
         _queue->insert(_queue->begin(), t);
-        _queue->sort([] (const T* a, const T * b) {
-            return a->getPriority() <= b->getPriority();
-        });
+        this->_sort();
     }
 
     void remove(T* t) {
@@ -54,25 +52,25 @@ public:
     }
 
     T* top() { // returns the top (head) element
-
         // CHANGE AS NECESSARY IF YOU CHOOSE ANOTHER QUEUE
         return (*_queue->begin());
     }
 
-    typename std::list<T*>::iterator begin() {
-		return _queue->begin();
-	}
+    /**
+     * Atualiza as prioridades dos elementos na lista e reordena a lista.
+     */
+    void reschedule(){
+    	for(auto it = _queue->begin(); it != _queue->end(); it++){
+    		(*it)->updatePriority();
+    	}
+    	this->_sort();
+    }
 
-	typename std::list<T*>::const_iterator begin() const {
-		return _queue->begin();
-	}
-
-	typename std::list<T*>::iterator end() {
-		return _queue->end();
-	}
-
-	typename std::list<T*>::const_iterator end() const {
-		return _queue->end();
+private:
+	void _sort(){
+		_queue->sort([] (const T* a, const T * b) {
+			return a->getPriority() <= b->getPriority();
+		});
 	}
 
 private:

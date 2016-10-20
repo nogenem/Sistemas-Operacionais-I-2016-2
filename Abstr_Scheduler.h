@@ -59,7 +59,7 @@ public:
     }
 
     /**
-	 * Atualiza a prioridade das requisições na lista do Escalonador
+	 * Atualiza as prioridades dos elementos na lista e reordena a lista.
 	 */
     void reschedule() {
         Debug::cout(Debug::Level::trace, "Scheduler::reschedule()");
@@ -67,15 +67,7 @@ public:
             // INSERT YOUR CODE HERE
             // ...
 
-        	//TODO chamar a função de ordenação?
-
-			// Atualiza a prioridade das requisições
-			DiskAccessRequest *tmp = nullptr;
-			for(auto it = this->_readyQueue->begin(); it != this->_readyQueue->end(); ++it){
-				tmp = (DiskAccessRequest*)(*it);
-				if(tmp != nullptr)
-					tmp->UpdatePriority();
-			}
+        	_readyQueue->reschedule();
         }
     }
 

@@ -94,7 +94,7 @@ public:
     /**
      * Imprimi as estatísticas do sistema operacional
      */
-    static void showStatistics();//TODO remover output?
+    static void showStatistics();
 
 private:
     static HW_MMU::Information asmm(std::string mnemonic);

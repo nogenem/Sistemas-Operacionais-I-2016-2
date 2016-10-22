@@ -82,6 +82,7 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
             simulator->insertEvent(instantMovementFinished, HW_Machine::Module_HardwareEvent(), entity);
 
             this->_accountInfo._totalHeadMov += headMovement;
+            //Se o bloco não foi encontrado então tecnicamente nada foi lido, certo?
             if(found)
             	_accountInfo._totalReadSectors++;
             break;

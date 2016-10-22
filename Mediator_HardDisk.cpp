@@ -105,11 +105,11 @@ void HardDisk::interrupt_handler() {     // Hard Disk Interrupt Handler
 		request->updatePriority();
 		scheduler->insert(request);
 	}else{
-		// Se não for um Jump apenas delete a requisição
+		// Se não for um Jump apenas deleta a requisição
 		delete request;
 	}
 
-	// Pega a proxima requisição do escalonador e a executa
+	// Pega a proxima requisição do escalonador e a atende
 	request = scheduler->choose();
 
 	if(request != nullptr)

@@ -94,7 +94,7 @@ public:
     void readBlock(DiskAccessRequest* request);
     
     /**
-	 * Chamada genérica que analisa a @param request para verificar que
+	 * Chamada genérica que analisa o @param request para verificar que
 	 * tipo de requisição é, e chamar o método adequado para trata-la
 	 * @param request Uma requisição com as informações necessarias
 	 */
@@ -128,8 +128,8 @@ public:
 	void jumpToBlock(DiskAccessRequest* request);
 
 	/**
-	 * Retorna a posição da 'head' do disco
-	 * @return A posição da 'head' do disco
+	 * Retorna a posição do cabeçote do disco
+	 * @return A posição do cabeçote do disco
 	 */
 	unsigned int getHeadPosition();
 
@@ -161,7 +161,7 @@ public:
 	/**
 	 * Imprimi as estatísticas do disco
 	 */
-	void showStatistics();//TODO remover output?
+	void showStatistics();
 private:
     unsigned int _instance;
     unsigned int _blocksize;  // should be equal to the HD sector size for simplicity
@@ -173,7 +173,7 @@ private:
 	 * Trata a interrupção gerada pelo disco.
 	 * Deve-se remover a ultima requisição atendida da lista do
 	 * Escalonador, pedir ao Escalanador para escolher a próxima
-	 * requisição e, caso haja uma, deve-se executa-la.
+	 * requisição e, caso haja uma, deve-se atende-la.
 	 */
     static void interrupt_handler();
 };

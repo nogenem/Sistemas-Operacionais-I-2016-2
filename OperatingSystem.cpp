@@ -83,8 +83,7 @@ void OperatingSystem::ExecuteTestCode() {
 			scheduler->insert(request);
 
 			// Testes
-
-			// Adicionar requisicoes de escrita/leitura ao escalonador de disco
+			// Adicionar requisicoes de escrita ao escalonador de disco
 			diskSector = new HW_HardDisk::DiskSector{{0,0,1,1},0,150,0};
 			request = new DiskAccessRequest(DiskAccessRequest::WRITE,0,diskSector);
 			scheduler->insert(request);
@@ -97,10 +96,10 @@ void OperatingSystem::ExecuteTestCode() {
 			request = new DiskAccessRequest(DiskAccessRequest::WRITE,0,diskSector);
 			scheduler->insert(request);
 
-			// Pegar a 1* requisicao do escalonador
+			// Pegar a 1* requisição do escalonador
 			request = scheduler->choose();
 
-			// Chamar o Mediator_HardDisk passando esta primeira requisicao
+			// Chamar o Mediator_HardDisk passando esta primeira requisição
 			hd_mediator->accessBlock(request);
             break;
         }case 1:{
@@ -109,7 +108,7 @@ void OperatingSystem::ExecuteTestCode() {
 			scheduler = OperatingSystem::Disk_Scheduler();
 			hd_mediator = OperatingSystem::HardDisk_Mediator();
 
-			// Adicionar requisicoes de escrita/leitura ao escalonador de disco
+			// Adiciona requisicoes de escrita ao escalonador de disco
 			diskSector = new HW_HardDisk::DiskSector{{1,0,1,0},0,1,0};
 			request = new DiskAccessRequest(DiskAccessRequest::WRITE,0,diskSector);
 			scheduler->insert(request);
@@ -120,7 +119,7 @@ void OperatingSystem::ExecuteTestCode() {
 			scheduler = OperatingSystem::Disk_Scheduler();
 			hd_mediator = OperatingSystem::HardDisk_Mediator();
 
-			// Adicionar requisicoes de escrita/leitura ao escalonador de disco
+			// Adiciona requisicoes de leitura ao escalonador de disco
 			diskSector = new HW_HardDisk::DiskSector{{},0,250,0};
 			request = new DiskAccessRequest(DiskAccessRequest::READ,0,diskSector);
 			scheduler->insert(request);
@@ -135,7 +134,7 @@ void OperatingSystem::ExecuteTestCode() {
 			scheduler = OperatingSystem::Disk_Scheduler();
 			hd_mediator = OperatingSystem::HardDisk_Mediator();
 
-			// Adicionar requisicoes de escrita/leitura ao escalonador de disco
+			// Adiciona requisicoes de leitura ao escalonador de disco
 			diskSector = new HW_HardDisk::DiskSector{{},0,1,0};
 			request = new DiskAccessRequest(DiskAccessRequest::READ,0,diskSector);
 			scheduler->insert(request);

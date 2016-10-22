@@ -201,3 +201,7 @@ Thread* Thread::thread_create(Process* parent) {
     Debug::cout(Debug::Level::fine, "Created thread " + std::to_string(reinterpret_cast<unsigned long> (newThread)));
     return newThread;
 }
+
+std::ostream& operator<<(std::ostream& os, const Thread* c){
+	return os;
+}

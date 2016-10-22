@@ -13,6 +13,7 @@
 #include "Util_Queue.h"
 #include "Abstr_Process.h"
 #include "Mediator_Timer.h"
+#include <iostream>
 //#include "ModuleInvoke_ThreadExec.h"
 
 class Thread {
@@ -83,6 +84,9 @@ public: //
     int join();
     Process* getProcess();
     int getPriority() const;
+    /**
+     * Adicionado apenas para facilitar o uso na classe Scheduling_Queue
+     */
     void updatePriority() {}
 protected:
     Process * _process;
@@ -99,6 +103,8 @@ private: // USER DEFINED
     //Queue<Thread*>* _queue;
     std::list<Thread*>* _queue;
 };
+
+std::ostream& operator<<(std::ostream& os, const Thread* c);
 
 #endif	/* THREAD_H */
 

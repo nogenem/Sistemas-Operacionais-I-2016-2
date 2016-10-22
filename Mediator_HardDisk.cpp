@@ -17,6 +17,52 @@
 #include "Simulator.h"
 #include <math.h>
 
+// DiskAccessRequest
+DiskAccessRequest::DiskAccessRequest(Operation operation,
+		HW_HardDisk::blockNumber blockNumber, HW_HardDisk::DiskSector* diskSector) {
+	 _operation = operation;
+	 _blockNumber = blockNumber;
+	 _diskSector = diskSector;
+	 _priority = 0;
+	 _arrivalTime = Simulator::getInstance()->getTnow();
+
+	 this->updatePriority();
+ }
+
+void DiskAccessRequest::updatePriority(){
+	HardDisk *hd = OperatingSystem::HardDisk_Mediator();
+	unsigned int headPos = hd->getHeadPosition();
+	unsigned int maxTracks = hd->getTracksPerSurface();
+	unsigned int track = this->_diskSector->track;
+
+	if(track > headPos)//req.track esta a frente da head?
+		this->_priority = ceil(maxTracks / 2.0) + track;//então ela tem prioridade maior
+	else
+		this->_priority = 2.0 * maxTracks + track;
+}
+
+std::ostream& operator<<(std::ostream& os, const DiskAccessRequest* c){
+	std::string op = "";
+	switch(c->GetOperation()){
+	case DiskAccessRequest::READ:
+		op = "READ";
+		break;
+	case DiskAccessRequest::WRITE:
+		op = "WRITE";
+		break;
+	case DiskAccessRequest::JUMP:
+		op = "JUMP";
+		break;
+	}
+	os << "Request{ op: " << op <<
+				", priority: " << c->getPriority() <<
+				", Track: " << c->GetDiskSector()->track <<
+				", Sector: " << c->GetDiskSector()->sector <<
+				"}";
+	return os;
+}
+
+// HardDisk
 HardDisk::HardDisk(unsigned int instance) {
     _instance = instance;
     HW_HardDisk* hd = HW_Machine::HardDisk();
@@ -56,7 +102,7 @@ void HardDisk::interrupt_handler() {     // Hard Disk Interrupt Handler
 
 		// Jumps devem ter sua prioridade ajustada e devem ser adicionados denovo
 		// na lista [fazendo a lista se reordenar]
-		request->updatePriority();//TODO REVER ISSO!
+		request->updatePriority();
 		scheduler->insert(request);
 	}else{
 		// Se não for um Jump apenas delete a requisição
@@ -97,11 +143,6 @@ void HardDisk::setBlockSize(const unsigned int blocksize) {
 }
 
 void HardDisk::accessBlock(DiskAccessRequest* request) {
-	//TODO REMOVER ISSO!
-	std::cout << "Request: op=" << request->GetOperation() <<
-			"; pri=" << request->getPriority() <<
-			"; tr=" << request->GetDiskSector()->track << "\n\n";
-
 	switch(request->GetOperation()){
 	case DiskAccessRequest::READ:
 		readBlock(request);
@@ -147,25 +188,9 @@ unsigned int HardDisk::getTracksPerSurface(){
 	return _tracksPerSurface;
 }
 
-DiskAccessRequest::DiskAccessRequest(Operation operation,
-		HW_HardDisk::blockNumber blockNumber, HW_HardDisk::DiskSector* diskSector) {
-	 _operation = operation;
-	 _blockNumber = blockNumber;
-	 _diskSector = diskSector;
-	 _priority = 0;
-	 _arrivalTime = Simulator::getInstance()->getTnow();
-
-	 this->updatePriority();
- }
-
-void DiskAccessRequest::updatePriority(){
-	HardDisk *hd = OperatingSystem::HardDisk_Mediator();
-	unsigned int headPos = hd->getHeadPosition();
-	unsigned int maxTracks = hd->getTracksPerSurface();
-	unsigned int track = this->_diskSector->track;
-
-	if(track > headPos)//req.track esta a frente da head?
-		this->_priority = ceil(maxTracks / 2.0) + track;//então ela tem prioridade maior
-	else
-		this->_priority = 2.0 * maxTracks + track;
+void HardDisk::showStatistics(){
+	HW_HardDisk* hd = HW_Machine::HardDisk();
+	std::cout << "\t\tHead moviments: " << hd->getTotalHeadMoviment() <<
+			"\n\t\tTotal Bytes Read: " << hd->getTotalBytesRead() <<
+			"\n\t\tTotal Bytes Written: " << hd->getTotalBytesWritten();
 }

@@ -15,12 +15,13 @@
 #define HD_H
 
 #include "HW_HardDisk.h"
+#include <iostream>
 
 class DiskAccessRequest {
 public:
     enum Operation {READ, WRITE, JUMP};
 public:
-     DiskAccessRequest(Operation operation,HW_HardDisk::blockNumber blockNumber,
+     DiskAccessRequest(Operation operation, HW_HardDisk::blockNumber blockNumber,
     		 HW_HardDisk::DiskSector* diskSector);
 
      HW_HardDisk::DiskSector* GetDiskSector() const {
@@ -60,6 +61,8 @@ private:
 
     double _arrivalTime;//Tempo de chegada no sistema
 };
+
+std::ostream& operator<<(std::ostream& os, const DiskAccessRequest* c);
 
 class HardDisk {
     friend class ModuleInvoke_HardwareEvent;
@@ -130,6 +133,11 @@ public:
 	 * @return O numero de trilhas por superficie do disco
 	 */
 	unsigned int getTracksPerSurface();
+
+	/**
+	 * Imprimi as estatísticas do disco
+	 */
+	void showStatistics();//TODO remover output?
 private:
     unsigned int _instance;
     unsigned int _blocksize;  // should be equal to the HD sector size for simplicity

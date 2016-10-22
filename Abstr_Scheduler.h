@@ -15,6 +15,7 @@
 #include "Util_Scheduling_Queue.h"
 #include "Simul_Debug.h"
 #include "Mediator_HardDisk.h"
+#include <iostream>
 
 template <typename T>
 class Scheduler {
@@ -49,6 +50,8 @@ public:
         } else {
             T* result = _readyQueue->top();
             _choosen = result;
+
+            std::cout << "\t\t" << result << "\n";//TODO remover output?
             //_readyQueue->pop();
             return result;
         }
@@ -71,7 +74,9 @@ public:
         }
     }
 
-    void insert(T * schedulingItem) {
+    void insert(T * schedulingItem) {//TODO remover trace e output?
+    	Debug::cout(Debug::Level::trace, "Scheduler::insert()");
+    	std::cout << "\t\t" << schedulingItem << "\n";
         this->_readyQueue->insert(schedulingItem);
     }
 

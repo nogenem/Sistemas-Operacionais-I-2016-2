@@ -133,8 +133,9 @@ void Simulator::_do_run() {
     _showSimulationStatistics();
 }
 
-void Simulator::_showSimulationStatistics() {
-
+void Simulator::_showSimulationStatistics() {//TODO remover output?
+	std::cout << "Statistics:\n";
+	OperatingSystem::showStatistics();
 }
 
 void Simulator::run() {

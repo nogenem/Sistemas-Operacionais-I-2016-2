@@ -57,7 +57,7 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
         case GET_SECTORSIZE:
             _dataRegister = DISK_SECTOR_SIZE;
             break;
-        case READ_LOGICALSECTOR:
+        case READ_LOGICALSECTOR:{
             for (std::list<DiskSector*>::iterator it = _hardDisk->begin(); it != _hardDisk->end(); it++) {
                 found = (*it)->surface == surface && (*it)->track == track && (*it)->sector == sector;
                 if (found) {
@@ -85,7 +85,7 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
             if(found)
             	_accountInfo._totalReadSectors++;
             break;
-        case WRITE_LOGICALSECTOR:
+        }case WRITE_LOGICALSECTOR:{
             for (std::list<DiskSector*>::iterator it = _hardDisk->begin(); it != _hardDisk->end(); it++) {
                 found = (*it)->surface == surface && (*it)->track == track && (*it)->sector == sector;
                 if (found) {
@@ -115,9 +115,9 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
             simulator->insertEvent(instantMovementFinished, HW_Machine::Module_HardwareEvent(), entity);
 
             this->_accountInfo._totalHeadMov += headMovement;
-            _accountInfo._totalReadSectors++;
+            _accountInfo._totalWrittenSectors++;
             break;
-        case JUMP_TO_LOGICALSECTOR://Apenas se move até a track passada
+        }case JUMP_TO_LOGICALSECTOR:{//Apenas se move até a track passada
 			_headTrackPosition = track;
 			// schedule an event to notify it's ready
 			simulator = Simulator::getInstance();
@@ -126,9 +126,13 @@ void HW_HardDisk::setCommandRegister(unsigned int _commandRegister) {
 			instantMovementFinished = simulator->getTnow() + headMovement * Traits<HW_HardDisk>::sectorMovementTime;
 			simulator->insertEvent(instantMovementFinished, HW_Machine::Module_HardwareEvent(), entity);
 
-			//TODO contar para o _totalHeadMov??
+			// Jump da track 999 para a track 0 não conta para
+			// a estatistica da quantidade de movimentos do cabeçote
+			// Fonte: http://www.cs.iit.edu/~cs561/cs450/disksched/disksched.html
+			if(track != 0)
+				this->_accountInfo._totalHeadMov += headMovement;
 			break;
-        default:
+        }default:
             // never should happen
             break;
     }

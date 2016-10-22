@@ -91,6 +91,11 @@ public:
     static void LoadApplication(Application* app, MMU::PhysicalAddress address);
     static void Init();
     
+    /**
+     * Imprimi as estatísticas do sistema operacional
+     */
+    static void showStatistics();//TODO remover output?
+
 private:
     static HW_MMU::Information asmm(std::string mnemonic);
 };

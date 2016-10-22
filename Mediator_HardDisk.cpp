@@ -143,6 +143,13 @@ void HardDisk::setBlockSize(const unsigned int blocksize) {
 }
 
 void HardDisk::accessBlock(DiskAccessRequest* request) {
+	// Acredito que os jumps não contem para isso?
+	if(request->GetOperation() != DiskAccessRequest::JUMP){
+		this->_accountInfo._totalReqsAttended++;
+		this->_accountInfo._totalTimeToAttend += (Simulator::getInstance()->getTnow() -
+				request->getArrivalTime());
+	}
+
 	switch(request->GetOperation()){
 	case DiskAccessRequest::READ:
 		readBlock(request);
@@ -192,5 +199,7 @@ void HardDisk::showStatistics(){
 	HW_HardDisk* hd = HW_Machine::HardDisk();
 	std::cout << "\t\tHead moviments: " << hd->getTotalHeadMoviment() <<
 			"\n\t\tTotal Bytes Read: " << hd->getTotalBytesRead() <<
-			"\n\t\tTotal Bytes Written: " << hd->getTotalBytesWritten();
+			"\n\t\tTotal Bytes Written: " << hd->getTotalBytesWritten() <<
+			"\n\t\tRequests Attended: " << this->getTotalReqsAttended() <<
+			"\n\t\tMean Time to Attend a request: " << this->getMeanTimeToAttendReq();
 }

@@ -67,6 +67,11 @@ std::ostream& operator<<(std::ostream& os, const DiskAccessRequest* c);
 class HardDisk {
     friend class ModuleInvoke_HardwareEvent;
     friend class ProblemTester;
+
+    struct AccountInformation {
+    	unsigned int _totalReqsAttended;//Numero total de requisições atendidas
+    	double _totalTimeToAttend;//Soma dos tempos para atender cada requisição
+    };
 public:
     HardDisk(unsigned int instance);
     HardDisk(const HardDisk& orig);
@@ -135,6 +140,25 @@ public:
 	unsigned int getTracksPerSurface();
 
 	/**
+	 * Retorna o numero total de requisições atendidas pelo disco.
+	 * @return O numero total de requisições atendidas pelo disco.
+	 */
+	unsigned int getTotalReqsAttended(){
+		return this->_accountInfo._totalReqsAttended;
+	}
+
+	/**
+	 * Retorna o tempo médio gasto para atender uma requisição.
+	 * O tempo para atender uma requisição, neste caso, seria:
+	 * 		Tempo em que a requisição foi atendida - Tempo de chegada no sistema
+	 * @returns O tempo médio gasto para atender uma requisição.
+	 */
+	double getMeanTimeToAttendReq(){
+		return this->_accountInfo._totalTimeToAttend /
+				(double) this->_accountInfo._totalReqsAttended;
+	}
+
+	/**
 	 * Imprimi as estatísticas do disco
 	 */
 	void showStatistics();//TODO remover output?
@@ -143,6 +167,7 @@ private:
     unsigned int _blocksize;  // should be equal to the HD sector size for simplicity
     unsigned int _tracksPerSurface;
     HW_HardDisk::blockNumber _maxBlocks;
+    AccountInformation _accountInfo;
 private:
     /**
 	 * Trata a interrupção gerada pelo disco.

@@ -35,9 +35,14 @@ void DiskAccessRequest::updatePriority(){
 	unsigned int maxTracks = hd->getTracksPerSurface();
 	unsigned int track = this->_diskSector->track;
 
-	if(track > headPos)//req.track esta a frente da head?
+	if(track >= headPos)//req.track esta a frente da head?
 		this->_priority = ceil(maxTracks / 2.0) + track;//então ela tem prioridade maior
 	else
+		this->_priority = 2.0 * maxTracks + track;
+
+	// Proteção para que os JUMPs não fiquem sempre com a maior
+	// prioridade
+	if(this->_operation == JUMP && track == headPos)
 		this->_priority = 2.0 * maxTracks + track;
 }
 
@@ -201,5 +206,6 @@ void HardDisk::showStatistics(){
 			"\n\t\tTotal Bytes Read: " << hd->getTotalBytesRead() <<
 			"\n\t\tTotal Bytes Written: " << hd->getTotalBytesWritten() <<
 			"\n\t\tRequests Attended: " << this->getTotalReqsAttended() <<
-			"\n\t\tMean Time to Attend a request: " << this->getMeanTimeToAttendReq();
+			"\n\t\tMean Time to Attend a request: " << this->getMeanTimeToAttendReq() << 
+            "\n";
 }
